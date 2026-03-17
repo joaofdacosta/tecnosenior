@@ -1,0 +1,80 @@
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;           /* tipo de fonte */
+    background-color: #f0f2f5;                /* cor de fundo */
+    display: flex;                            /* centraliza conteúdo */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;                            /* altura total da tela */
+    margin: 0;
+}
+
+/* Container principal do formulário */
+.login-container {
+    background-color: #fff;                   /* fundo branco */
+    padding: 40px;                            /* espaçamento interno */
+    border-radius: 10px;                      /* bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);/* sombra leve */
+    text-align: center;                       /* conteúdo centralizado */
+    width: 350px;                             /* largura fixa */
+}
+
+/* Título principal */
+.login-container h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Grupos de entrada de dados */
+.input-group {
+    margin-bottom: 15px;
+}
+
+/* Rótulos dos campos */
+.input-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Campos de entrada */
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Botão de login/cadastro */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #24483e;                /* verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;        /* animação suave no hover */
+}
+
+/* Efeito ao passar o mouse no botão */
+.login-btn:hover {
+    background-color: #0056b3;                /* azul mais escuro */
+}
+
+/* Área de links (ex: "esqueci minha senha") */
+.links {
+    margin-top: 20px;
+}
+
+/* Estilo dos links */
+.links a {
+    color: #007bff;                           /* azul padrão */
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 10px;
+}

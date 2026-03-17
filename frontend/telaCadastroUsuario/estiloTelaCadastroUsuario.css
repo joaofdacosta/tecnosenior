@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.cadastro-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 380px; /* Largura do formulário */
+  max-width: 90%; /* Garante que não ultrapasse a tela em dispositivos pequenos */
+}
+
+.cadastro-container h2 {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left; /* Alinha labels à esquerda */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+.cadastro-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #24483e; /* Cor do botão original */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 15px; /* Adiciona espaço acima do botão */
+}
+
+.cadastro-btn:hover {
+  background-color: #1a3a31; /* Um tom ligeiramente mais escuro para hover */
+}
+
+.links {
+  margin-top: 20px;
+}
+
+.links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Estilo para a mensagem de erro */
+#error-message {
+  color: red;
+  font-size: 0.9em;
+  min-height: 1.2em; /* Evita que o layout "pule" */
+  margin-top: 10px;
+  text-align: center;
+}
