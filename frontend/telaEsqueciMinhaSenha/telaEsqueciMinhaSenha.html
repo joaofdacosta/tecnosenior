@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>EsqueciMinhaSenha</title>
+ <link rel="stylesheet" href="estiloTelaEsqueciMinhaSenha.css"> 
+</head>
+
+<body>
+ <div class="login-container">
+ <h2>Esqueci minha senha</h2>
+ <form id="form-request">
+ <h5>Digite seus dados para solicitar um código</h5>
+ <div class="input-group">
+ <input type="email" id="request-email" placeholder="Email" required>
+</div>
+ <div class="input-group">
+ <input type="text" id="request-username" placeholder="Nome de usuário" required>
+ </div>
+<p id="request-message" style="font-size: 0.9em; min-height: 1.2em;"></p>
+ <button type="submit" class="login-btn">Solicitar Código</button>
+</form>
+
+ <form id="form-reset" style="display: none;">
+ <h5>Digite o código e sua nova senha</h5>
+ <div class="input-group">
+ <input type="text" id="reset-code" placeholder="Código (veja o terminal)" required>
+ </div>
+ <div class="input-group">
+ <input type="password" id="reset-senha" placeholder="Nova Senha" required>
+ </div>
+ <div class="input-group">
+ <input type="password" id="reset-confirmar-senha" placeholder="Confirme sua senha" required>
+ </div>
+ <p id="reset-message" style="color: red; font-size: 0.9em; min-height: 1.2em;"></p>
+ <button type="submit" class="login-btn">Cadastrar nova senha</button>
+ </form>
+
+ <div class="links">
+ <a href="../telaLogin/telaLogin.html">Voltar para o Login</a>
+ </div>
+ </div>
+
+ <script src="esqueciSenha.js" defer></script> 
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../telaInicial/ImgLogo/favicon.png"> <!-- Ajuste o caminho se necessário -->
+    <link rel="stylesheet" href="estiloTelaLogin.css"> <!-- Verifique o nome do seu CSS -->
+</head>
+
+<body>
+    <div class="login-container"> <!-- Use a classe CSS que você definir -->
+        <h2>Entrar</h2>
+
+        <form id="login-form">
+            <div class="input-group"> <!-- Use a classe CSS que você definir -->
+                <input type="text" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group"> <!-- Use a classe CSS que você definir -->
+                <input type="password" id="senha" placeholder="Senha" required>
+            </div>
+
+            <!-- Parágrafo para mensagens de erro -->
+            <p id="error-message" style="color: red; font-size: 0.9em; min-height: 1.2em;"></p>
+
+            <button type="submit" class="login-btn">Entrar</button> <!-- Use a classe CSS que você definir -->
+        </form>
+
+        <!-- Links adicionados -->
+        <div class="links"> <!-- Use a classe CSS que você definir -->
+            <a href="../telaEsqueciMinhaSenha/telaEsqueciMinhaSenha.html">Esqueceu a senha?</a>
+            <a href="../telaCadastroUsuario/telaCadastroUsuario.html">Criar uma conta</a>
+        </div>
+    </div>
+
+    <!-- Link para o script JS -->
+    <script src="login.js" defer></script>
+</body>
+</html>

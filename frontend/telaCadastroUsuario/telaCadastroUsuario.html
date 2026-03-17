@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .login-container h5 {
+            margin-bottom: 25px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #24483e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+
+        #error-message {
+            color: red;
+            font-size: 0.9em;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Cadastro</h2>
+        <form id="cadastro-form">
+            <h5>Digite os dados para criar sua conta</h5>
+
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Nome de usuário" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="senha" placeholder="Senha" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmar-senha" placeholder="Confirme sua senha" required>
+            </div>
+
+            <p id="error-message"></p>
+
+            <button type="submit" class="login-btn">Cadastrar</button>
+        </form>
+
+        <div class="links">
+            <a href="../telaLogin/telaLogin.html">Já tem uma conta? Entrar</a>
+        </div>
+    </div>
+
+    <script src="cadastro.js" defer></script>
+</body>
+
+</html>
