@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="../global/acessibilidade.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TecnoSenior • Assistir aula</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../telaInicial/ImgLogo/favicon.png"
+    />
+    <link rel="stylesheet" href="estiloTelaVideo.css" />
+
+    <style>
+      /* --- ESTILOS GERAIS --- */
+      .video-info {
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      /* --- BOTÕES DE NAVEGAÇÃO --- */
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+
+      .btn-nav {
+        text-decoration: none;
+        padding: 12px 25px;
+        background-color: #24483e;
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          transform 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-nav:hover {
+        background-color: #1b362f;
+        transform: translateY(-2px);
+      }
+      .btn-nav.disabled {
+        background-color: #ccc;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      /* --- AÇÕES --- */
+      .actions {
+        margin-top: 15px;
+        display: flex;
+        gap: 15px;
+      }
+      .btn-action {
+        cursor: pointer;
+        background: #fff;
+        border: 2px solid #24483e;
+        padding: 8px 20px;
+        border-radius: 25px;
+        color: #24483e;
+        font-weight: bold;
+        transition: all 0.2s;
+      }
+      .btn-action:hover {
+        background: #f0f9f6;
+      }
+      .btn-action.active {
+        background-color: #24483e;
+        color: white;
+      }
+
+      /* --- MELHORIA VISUAL: ÁREA DE COMENTÁRIOS --- */
+      .comments-section {
+        margin-top: 40px;
+        padding: 25px;
+        background-color: #f9f9f9; /* Fundo cinza claro para destacar a área */
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .comments-section h3 {
+        margin-top: 0;
+        color: #24483e;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .comment-box {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        resize: vertical; /* Permite redimensionar altura */
+      }
+
+      /* Estilo de Cartão para cada comentário */
+      .comment-item {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra suave */
+        border-left: 5px solid #24483e; /* Detalhe verde na esquerda */
+        color: #333;
+        line-height: 1.5;
+      }
+
+      /* Botão de Enviar mais chamativo */
+      .btn-send {
+        width: 100%;
+        margin-top: 15px;
+        background-color: #24483e;
+        color: white;
+        font-size: 1.1rem;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+      .btn-send:hover {
+        background-color: #162b25;
+      }
+
+      /* --- BARRA LATERAL --- */
+      .sidebar-item {
+        display: block;
+        padding: 15px;
+        margin-bottom: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.2s;
+      }
+
+      .sidebar-item:hover {
+        background-color: #e8f5f1;
+        border-color: #24483e;
+        transform: translateX(5px);
+      }
+
+      .sidebar-item.active {
+        background-color: #24483e;
+        color: white;
+        border-color: #24483e;
+        pointer-events: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar-title {
+        font-size: 1em;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .sidebar-meta {
+        font-size: 0.85em;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="barra-acessibilidade">
+      <button
+        onclick="alterarFonte('aumentar')"
+        aria-label="Aumentar tamanho da letra"
+      >
+        A+
+      </button>
+      <button
+        onclick="alterarFonte('diminuir')"
+        aria-label="Diminuir tamanho da letra"
+      >
+        A-
+      </button>
+      <button onclick="alternarContraste()" aria-label="Ativar alto contraste">
+        🌗 Alto Contraste
+      </button>
+    </div>
+
+    <header class="ts-header">
+      <div class="container navbar" role="navigation">
+        <a class="brand" href="../telaInicial/telaInicial.html">
+          <img
+            src="../telaInicial/ImgLogo/ImgLogo.png"
+            alt="Logo TecnoSenior"
+            class="logo-ico"
+          />
+          <div class="wordmark">
+            <span class="wm-title">TECNOSENIOR</span>
+            <span class="wm-sub">Ensinando o básico para a melhor idade</span>
+          </div>
+        </a>
+        <nav class="header-actions">
+          <a class="btn btn-ghost" href="../telaPerfil/telaPerfil.html"
+            >Perfil</a
+          >
+          <a class="btn btn-ghost" href="../telaInicial/telaInicial.html"
+            >Voltar ao Início</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="container watch">
+      <nav class="breadcrumbs">
+        <a href="../telaInicial/telaInicial.html">Cursos</a> ›
+        <span id="video-categoria">Aula</span>
+      </nav>
+
+      <header class="lesson-head">
+        <h1 id="video-titulo">Carregando título...</h1>
+        <div id="video-data" class="video-info"></div>
+        <p id="video-descricao" class="lede"></p>
+      </header>
+
+      <section class="watch-grid">
+        <article class="player-card">
+          <div class="video-wrap">
+            <video id="video-player" controls preload="metadata" width="100%">
+              <source id="video-source" src="" type="video/mp4" />
+              Seu navegador não suporta o vídeo.
+            </video>
+          </div>
+
+          <div class="actions">
+            <button id="btn-curtir" class="btn-action">👍 Curtir</button>
+            <button id="btn-favoritar" class="btn-action">❤️ Favoritar</button>
+          </div>
+
+          <div class="nav-buttons">
+            <a href="#" id="link-anterior" class="btn-nav">⬅️ Aula Anterior</a>
+            <a href="#" id="link-proxima" class="btn-nav">Próxima Aula ➡️</a>
+          </div>
+
+          <div class="comments-section">
+            <h3>Comentários da Comunidade</h3>
+
+           <div id="lista-comentarios" style="margin-bottom: 20px"></div>
+            </div>
+
+            <label
+              for="campo-comentario"
+              style="font-weight: bold; display: block; margin-bottom: 5px"
+              >Deixe sua dúvida ou elogio:</label
+            >
+            <textarea
+              id="campo-comentario"
+              class="comment-box"
+              placeholder="Escreva aqui o que você achou da aula..."
+              rows="3"
+            ></textarea>
+
+            <button id="btn-enviar-comentario" class="btn-send">
+              Enviar Comentário
+            </button>
+          </div>
+        </article>
+
+        <aside class="sidebar">
+          <h3>Outras Aulas</h3>
+          <div id="lista-proximas-aulas"></div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="tela-video.js" defer></script>
+    <script src="../global/acessibilidade.js"></script>
+  </body>
+</html>

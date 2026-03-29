@@ -1,0 +1,205 @@
+:root{
+  --bg:#ffffff;           /* cor do fundo */ 
+  --text:#0f7555;         /* cor do texto */
+  --muted:#666; 
+  --brand:#282448;        /* azul de ação */
+  --soft:#f6f7fb;         /* fundo suave */
+  --card:#fff;            /* card */
+  --stroke:#e7e7ea;       /* borda leve */
+  --accent:#00a37a;       /* verde p/ destaque */
+}
+
+/* Regras gerais */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container {
+  width: 100%;
+  padding: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;              /* distância entre logo e quadrado */
+}
+
+/* Ícone da logo */
+.logo-ico {
+  max-height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Quadrado verde */
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #053a34;   /* verde escuro */
+  padding: 6px 12px;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.wm-title {
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #1ad19f;
+}
+
+.wm-sub {
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+}
+
+
+/* Header */
+header{
+  position:sticky;top:0;background:#fff;
+  border-bottom:1px solid var(--stroke);z-index:10
+}
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:10px 20px;             /* controla a altura da barra */
+}
+.brand{
+  display:flex;align-items:center;gap:12px;font-weight:700
+}
+/* Tamanho fixo da logo para não “esticar” a header */
+.brand img{
+  height:70px;                  
+  width:auto;
+  display:block;
+}
+
+.nav-actions{display:flex;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:10px 14px;             
+  border-radius:999px;border:1px solid var(--stroke);font-weight:600
+}
+.btn-primary{background:var(--text);color:#fff;border-color:var(--text)}
+.btn-ghost{background:#fff}
+.btn:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0px;
+  align-items: stretch;
+}
+
+.hero-left {
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.hero-left img {
+  width: 80%;   
+  display: block;
+  margin: 0 auto; 
+  border-radius: 14px;
+  
+
+}
+
+.hero-right {
+  padding: 12px;
+}
+
+.eyebrow {
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--brand);
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  margin: 8px 0 12px;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Cursos */
+    .section{padding-block:36px}
+    .section h2{font-size:26px;margin:0 50 18px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:100%}
+    .card .body{padding:14px}
+    .card h3{font-size:18px;margin:6px 0 6px}
+    .meta{font-size:13px;color:var(--muted)}
+    .teacher{display:flex;align-items:center;gap:8px;margin-top:10px}
+    .avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid var(--stroke)}
+    .pill{margin-top:auto;display:inline-flex;align-self:flex-start;padding:10px 14px;border-radius:999px;background:var(--text);color:#fff;font-weight:600}
+.card > img {
+  height: 180px;       
+  width: 100%;         
+  object-fit: cover;  
+}
+
+    /* Porque assistir */
+    .grid-why{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .motivos{display:grid;gap:12px}
+    .motivo{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--stroke);border-radius:12px;background:var(--soft)}
+    .motivo-icon{width:28px;height:28px;flex:0 0 28px}
+
+    .testimonials{
+  display: flex;  
+  flex-direction: column;   /* cards empilhados */
+  gap: 16px;
+}
+
+.testi{
+  background: #fff;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.testi .avatar{
+  width: 80px;
+  height: 80px;
+  flex: 0 0 40px;
+  border-radius: 90%;
+  object-fit: cover;
+  border: 1px solid var(--stroke);
+}
+
+.testi .name{
+  font-weight: 700;
+  color: var(--text);       
+  margin: 0;
+}
+
+.testi .role{
+  font-size: 12px;
+  color: var(--muted);      
+  margin-top: 2px;
+}
+
+.testi blockquote{
+  margin: 6px 0 0;          
+  font-style: normal;
+  color: var(--text);        
+}
+
