@@ -1,106 +1,98 @@
-/* Corpo da página */
+/* ========================================== */
+/* RESET DO BODY PARA A TELA DE LOGIN         */
+/* ========================================== */
 body {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; /* Tipo de fonte */
-  background-color: #f0f2f5; /* Cor de fundo geral */
-  display: flex; /* Centraliza o conteúdo */
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ocupa toda a altura da tela */
-  margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Container principal (usado em ambas as páginas) */
+/* ========================================== */
+/* SOBRESCREVE A BARRA APENAS NA TELA LOGIN   */
+/* ========================================== */
+.barra-acessibilidade {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    align-self: stretch;
+}
+
+/* ========================================== */
+/* CENTRALIZA O LOGIN VERTICALMENTE           */
+/* ========================================== */
 .login-container {
-  background-color: #fff; /* Fundo branco */
-  padding: 40px; /* Espaçamento interno */
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  text-align: center; /* Centraliza o texto */
-  width: 350px; /* Largura fixa */
-  box-sizing: border-box; /* Garante que padding não altere a largura */
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    margin: auto;
 }
 
-/* Título */
 .login-container h2 {
-  margin-top: 0; /* Remove margem superior */
-  margin-bottom: 25px;
-  color: #333; /* Cinza escuro */
+    margin-bottom: 25px;
+    color: #333;
 }
 
-/* Bloco de entrada */
+/* ========================================== */
+/* INPUTS                                     */
+/* ========================================== */
 .input-group {
-  margin-bottom: 15px;
-  text-align: left; /* Alinha labels à esquerda */
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-/* Rótulos de campo (para a tela de cadastro) */
 .input-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #555; /* Cinza médio */
-  font-weight: bold;
-  font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
 }
 
-/* Campos de texto e senha */
 .input-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd; /* Borda leve */
-  border-radius: 5px;
-  box-sizing: border-box; /* Importante para o padding não estourar a largura */
-  font-size: 14px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-/* Botão principal */
+/* ========================================== */
+/* BOTÃO DE LOGIN                             */
+/* ========================================== */
 .login-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #24483e; /* Verde escuro */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s; /* Transição suave */
-  margin-top: 10px; /* Adiciona espaço antes do botão */
+    width: 100%;
+    padding: 12px;
+    background-color: #24483e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-/* Efeito hover no botão */
 .login-btn:hover {
-  background-color: #0056b3; /* Azul escuro (do seu primeiro CSS) */
+    background-color: #0056b3;
 }
 
-/* Área dos links (ex: "Esqueceu a senha?") */
+/* ========================================== */
+/* LINKS                                      */
+/* ========================================== */
 .links {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
-/* Estilo dos links */
 .links a {
-  color: #007bff; /* Azul padrão */
-  text-decoration: none;
-  font-size: 14px;
-  margin: 0 5px; /* Reduzido o margin para caber melhor */
-}
-
-.links a:hover {
-  text-decoration: underline; /* Sublinha ao passar o mouse */
-}
-
-/* Para o link de "Já tem conta?" ficar separado */
-.links-cadastro {
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.links-cadastro a {
-   color: #007bff;
-   text-decoration: none;
-   font-weight: bold;
-}
-
-.links-cadastro a:hover {
-  text-decoration: underline;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 10px;
 }

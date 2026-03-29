@@ -72,28 +72,28 @@ body.alto-contraste .profile-card {
   background-image: none !important; /* Tira qualquer sombra ou gradiente */
 }
 
-/* 2. Força ABSOLUTAMENTE TODO O TEXTO a ficar amarelo */
+/* 2. Texto branco em todo o conteúdo (estilo GOV.UK) */
 body.alto-contraste * {
-  color: #ffff00 !important;
+  color: #ffffff !important;
 }
 
-/* 3. Coloca uma borda amarela nos cartões brancos para eles não sumirem no escuro */
+/* 3. Borda branca nos cartões para não sumirem no escuro */
 body.alto-contraste .motivo,
 body.alto-contraste .testi,
 body.alto-contraste .login-container,
 body.alto-contraste .profile-card,
 body.alto-contraste input {
-  border: 1px solid #ffff00 !important;
+  border: 1px solid #ffffff !important;
 }
 
-/* 4. Inverte as cores dos botões de ação para dar destaque */
+/* 4. Botões com amarelo suave GOV.UK apenas para destaque */
 body.alto-contraste .btn,
 body.alto-contraste .login-btn,
 body.alto-contraste .btn-action,
 body.alto-contraste .btn-send {
-  background-color: #ffff00 !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
-  border: 2px solid #ffff00 !important;
+  border: 2px solid #ffffff !important;
   font-weight: bold !important;
 }
 
@@ -101,20 +101,22 @@ body.alto-contraste .btn-send {
 body.alto-contraste .btn:hover,
 body.alto-contraste .login-btn:hover {
   background-color: #000000 !important;
-  color: #ffff00 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-decoration: underline !important;
 }
 
-/* 5. Mantém a nossa barra de acessibilidade bonita */
+/* 5. Barra de acessibilidade */
 body.alto-contraste .barra-acessibilidade {
   background-color: #000000 !important;
-  border-bottom: 2px solid #ffff00 !important;
+  border-bottom: 2px solid #ffffff !important;
 }
 body.alto-contraste .barra-acessibilidade button {
   background-color: #000000 !important;
-  color: #ffff00 !important;
-  border: 2px solid #ffff00 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
 }
 body.alto-contraste .barra-acessibilidade button:hover {
-  background-color: #ffff00 !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
 }

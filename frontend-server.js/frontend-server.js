@@ -6,11 +6,11 @@ const app = express();
 const PORT = 5500; // Pode mudar se quiser
 
 // Define a pasta do frontend (ajuste se o nome for diferente)
-app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 // Rota padrão
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "telaLogin.html"));
+  res.redirect("/telaLogin/telaLogin.html");
 });
 
 app.listen(PORT, () => {

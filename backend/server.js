@@ -5,20 +5,32 @@
 import express from "express";
 import cors from "cors";
 import pg from "pg";
-import crypto from 'crypto'; 
+import crypto from 'crypto';
+import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const { Pool } = pg;
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// --- SERVIR O FRONTEND ---
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.get('/', (req, res) => {
+  res.redirect('/telaLogin/telaLogin.html');
+});
+
 // --- CONEXÃO COM O POSTGRES ---
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "TecnoSenior", 
-  password: "180513", 
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 pool.connect()
