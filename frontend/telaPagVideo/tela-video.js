@@ -98,7 +98,6 @@ if (usuarioLogado) {
                 btnAnterior.classList.add("disabled");
                 btnAnterior.textContent = "Início do Curso";
             }
-
             btnProxima.href = `telaPagVideo.html?id=${currentId + 1}`;
 
         } catch (err) {
