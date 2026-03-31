@@ -21,7 +21,7 @@ app.use(express.json());
 // --- SERVIR O FRONTEND ---
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 app.get('/', (req, res) => {
-  res.redirect('/telaLogin/telaLogin.html');
+  res.redirect('/telaInicial/telaInicial.html');
 });
 
 // --- CONEXÃO COM O POSTGRES ---
