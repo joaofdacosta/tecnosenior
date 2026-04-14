@@ -1,67 +1,49 @@
-/* ========================================== */
-/* VARIÁVEIS GERAIS                           */
-/* ========================================== */
 :root {
   --tamanho-fonte: 16px;
 }
 
-/* Faz com que o tamanho da fonte seja respeitado na página toda */
 html, body {
   font-size: var(--tamanho-fonte) !important;
 }
 
-/* ========================================== */
-/* BARRA DE ACESSIBILIDADE FIXA NO TOPO       */
-/* ========================================== */
-/* ========================================== */
-/* BARRA DE ACESSIBILIDADE FIXA NO TOPO       */
-/* ========================================== */
 .barra-acessibilidade {
-  position: sticky; /* <-- MUDAMOS AQUI (Era fixed) */
+  position: sticky;
   top: 0;
-  width: 100%; 
+  width: 100%;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   gap: 20px;
   padding: 12px 20px;
-  background-color: #24483e; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-  z-index: 9999; 
+  background-color: #24483e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
   box-sizing: border-box;
 }
 
-/* Estilo dos Botões da Barra */
 .barra-acessibilidade button {
   padding: 8px 20px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   border: 2px solid transparent;
-  background-color: #ffffff; /* Fundo branco */
-  color: #24483e; /* Letra verde */
-  border-radius: 25px; /* Bordas bem redondinhas e modernas */
-  transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
+  background-color: #ffffff;
+  color: #24483e;
+  border-radius: 25px;
+  transition: all 0.3s ease;
 }
 
-/* Efeito ao passar o mouse nos botões */
 .barra-acessibilidade button:hover {
-  background-color: #e8f5f1; /* Fica um verde bem clarinho */
-  transform: scale(1.05); /* Dá uma leve crescidinha */
+  background-color: #e8f5f1;
+  transform: scale(1.05);
 }
 
-
-/* ========================================== */
-/* ALTO CONTRASTE (Modo Força Bruta)          */
-/* ========================================== */
-
-/* 1. Força o fundo preto em todos os cartões, seções e containers teimosos */
-body.alto-contraste, 
+body.alto-contraste,
 body.alto-contraste main,
 body.alto-contraste header,
 body.alto-contraste section,
 body.alto-contraste .login-container,
-body.alto-contraste .motivo, 
-body.alto-contraste .testi,  
+body.alto-contraste .motivo,
+body.alto-contraste .testi,
 body.alto-contraste .navbar,
 body.alto-contraste .player-card,
 body.alto-contraste .comments-section,
@@ -69,15 +51,13 @@ body.alto-contraste .comment-item,
 body.alto-contraste .sidebar,
 body.alto-contraste .profile-card {
   background-color: #000000 !important;
-  background-image: none !important; /* Tira qualquer sombra ou gradiente */
+  background-image: none !important;
 }
 
-/* 2. Texto branco em todo o conteúdo (estilo GOV.UK) */
 body.alto-contraste * {
   color: #ffffff !important;
 }
 
-/* 3. Borda branca nos cartões para não sumirem no escuro */
 body.alto-contraste .motivo,
 body.alto-contraste .testi,
 body.alto-contraste .login-container,
@@ -86,7 +66,6 @@ body.alto-contraste input {
   border: 1px solid #ffffff !important;
 }
 
-/* 4. Botões com amarelo suave GOV.UK apenas para destaque */
 body.alto-contraste .btn,
 body.alto-contraste .login-btn,
 body.alto-contraste .btn-action,
@@ -97,7 +76,6 @@ body.alto-contraste .btn-send {
   font-weight: bold !important;
 }
 
-/* Efeito ao passar o mouse nos botões no modo contraste */
 body.alto-contraste .btn:hover,
 body.alto-contraste .login-btn:hover {
   background-color: #000000 !important;
@@ -106,17 +84,71 @@ body.alto-contraste .login-btn:hover {
   text-decoration: underline !important;
 }
 
-/* 5. Barra de acessibilidade */
 body.alto-contraste .barra-acessibilidade {
   background-color: #000000 !important;
   border-bottom: 2px solid #ffffff !important;
 }
+
 body.alto-contraste .barra-acessibilidade button {
   background-color: #000000 !important;
   color: #ffffff !important;
   border: 2px solid #ffffff !important;
 }
+
 body.alto-contraste .barra-acessibilidade button:hover {
   background-color: #ffffff !important;
   color: #000000 !important;
+}
+
+body.destaque-leitura p,
+body.destaque-leitura li,
+body.destaque-leitura h1,
+body.destaque-leitura h2,
+body.destaque-leitura h3,
+body.destaque-leitura label,
+body.destaque-leitura span.view-text,
+body.destaque-leitura .meta,
+body.destaque-leitura .lede {
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  transition: background-color 0.15s ease;
+}
+
+body.destaque-leitura p:hover,
+body.destaque-leitura li:hover,
+body.destaque-leitura h1:hover,
+body.destaque-leitura h2:hover,
+body.destaque-leitura h3:hover,
+body.destaque-leitura label:hover,
+body.destaque-leitura span.view-text:hover,
+body.destaque-leitura .meta:hover,
+body.destaque-leitura .lede:hover {
+  background-color: #fff9c4;
+  cursor: default;
+}
+
+body.alto-contraste.destaque-leitura p:hover,
+body.alto-contraste.destaque-leitura li:hover,
+body.alto-contraste.destaque-leitura h1:hover,
+body.alto-contraste.destaque-leitura h2:hover,
+body.alto-contraste.destaque-leitura h3:hover,
+body.alto-contraste.destaque-leitura label:hover,
+body.alto-contraste.destaque-leitura span.view-text:hover,
+body.alto-contraste.destaque-leitura .meta:hover,
+body.alto-contraste.destaque-leitura .lede:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+.barra-acessibilidade button.destaque-ativo {
+  background-color: #fff9c4;
+  color: #24483e;
+  border: 2px solid #24483e;
+}
+
+body.alto-contraste .barra-acessibilidade button.destaque-ativo {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
 }
