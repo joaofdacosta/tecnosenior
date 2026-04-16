@@ -49,7 +49,19 @@ body.alto-contraste .player-card,
 body.alto-contraste .comments-section,
 body.alto-contraste .comment-item,
 body.alto-contraste .sidebar,
-body.alto-contraste .profile-card {
+body.alto-contraste .profile-card,
+body.alto-contraste .side-card,
+body.alto-contraste .lessons a,
+body.alto-contraste .lessons .is-current a,
+body.alto-contraste .card,
+body.alto-contraste .card .body,
+body.alto-contraste .panel,
+body.alto-contraste .profile-body ul li,
+body.alto-contraste .footer,
+body.alto-contraste .ts-header,
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
   background-color: #000000 !important;
   background-image: none !important;
 }
@@ -62,7 +74,14 @@ body.alto-contraste .motivo,
 body.alto-contraste .testi,
 body.alto-contraste .login-container,
 body.alto-contraste .profile-card,
-body.alto-contraste input {
+body.alto-contraste .side-card,
+body.alto-contraste .lessons a,
+body.alto-contraste .card,
+body.alto-contraste .panel,
+body.alto-contraste .profile-body ul li,
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
   border: 1px solid #ffffff !important;
 }
 
