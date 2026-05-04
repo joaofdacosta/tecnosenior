@@ -154,6 +154,55 @@ h1 {
   object-fit: cover;  
 }
 
+/* Tópicos por tema */
+.cards--agrupado {
+  display: block;
+}
+
+.filtros-categoria {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.filtro-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid var(--text);
+  background: #fff;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.filtro-btn:hover,
+.filtro-btn.filtro-ativo {
+  background: var(--text);
+  color: #fff;
+}
+
+.categoria-section {
+  margin-bottom: 36px;
+}
+
+.categoria-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: var(--text);
+  border-left: 4px solid var(--accent);
+  padding-left: 10px;
+}
+
+.categoria-section .cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
     /* Porque assistir */
     .grid-why{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .motivos{display:grid;gap:12px}

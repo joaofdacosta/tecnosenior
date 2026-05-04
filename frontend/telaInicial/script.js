@@ -109,25 +109,19 @@ function checkLoginStatus() {
 
 
 // -------------------------------------------
-// TAREFA 2: CARREGAR VÍDEOS DO BANCO (NO CONTAINER VAZIO)
+// TAREFA 2: CARREGAR VÍDEOS AGRUPADOS POR TEMA
 // -------------------------------------------
 async function loadVideos() {
-    
-    // Encontra o container dos cards usando o seletor mais específico:
-    // O <div class="cards"> que está DENTRO da <section id="cursos">
     const container = document.querySelector('#cursos .cards');
-    
+
     if (!container) {
         console.error("Container de vídeos (#cursos .cards) não encontrado.");
         return;
     }
 
-    // Como o HTML agora está VAZIO, esta linha só mostra o "Carregando"
-    // e não apaga mais os 4 cards fixos (pois eles não existem mais no HTML)
-    container.innerHTML = "<p>Carregando vídeos...</p>"; 
+    container.innerHTML = "<p>Carregando vídeos...</p>";
 
     try {
-        // 1. Faz a chamada para a API (server.js)
         const response = await fetch(`${API_BASE_URL}/videos`);
 
         if (!response.ok) {
@@ -142,47 +136,98 @@ async function loadVideos() {
         }
 
         const videos = await response.json();
-        
-        // 2. Limpa a mensagem "Carregando..."
-        container.innerHTML = ""; 
-        
+        container.innerHTML = "";
+        container.classList.add('cards--agrupado');
+
         if (!videos || videos.length === 0) {
             container.innerHTML = "<p>Nenhum vídeo disponível no momento.</p>";
             return;
         }
 
-        // 3. Cria os cards dinâmicos (um para cada vídeo do banco)
+        // Agrupa vídeos por categoria
+        const grupos = {};
         for (const video of videos) {
-            const card = document.createElement("article");
-            card.className = "card"; // Usa a mesma classe dos seus cards fixos
-            card.setAttribute("role", "listitem");
-
-            // Define o link para a página de visualização do vídeo
-            // (Baseado na sua estrutura: telaInicial/ e telaPagVideo/ são irmãs)
-            const linkParaVideo = `../telaPagVideo/telaPagVideo.html?id=${video.id}`;
-
-            // Preenche o card com os dados do vídeo
-            card.innerHTML = `
-            <a href="${linkParaVideo}" class="card-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
-                
-                <img src="${video.imagem_capa || 'https://placehold.co/300x180/EFEFEF/AAAAAA?text=Imagem+Indisponível'}"'}" alt="Thumbnail do vídeo ${video.titulo || 'Sem título'}" onerror="this.onerror=null; this.src='https://placehold.co/300x180/EFEFEF/AAAAAA?text=Imagem+Indisponível';">
-                
-                <div class="body">
-                    <h3>${video.titulo || 'Título Indisponível'}</h3>
-                    <span class="meta">com <strong>TecnoSenior</strong> · ★★★★★</span>
-                    <div class="teacher">
-                        <img class="avatar" src="ImgLogo/Play.png" alt="Ícone Play" />
-                        <span class="pill">
-                            Acessar o vídeo
-                        </span>
-                    </div>
-                </div>
-            </a>
-            `;
-
-            // Adiciona o card novo ao container
-            container.appendChild(card);
+            const cat = video.categoria || 'Outros';
+            if (!grupos[cat]) grupos[cat] = [];
+            grupos[cat].push(video);
         }
+
+        const categorias = Object.keys(grupos);
+
+        // Botões de filtro
+        const filtrosDiv = document.createElement('div');
+        filtrosDiv.className = 'filtros-categoria';
+        filtrosDiv.setAttribute('aria-label', 'Filtrar por tema');
+
+        const btnTodos = document.createElement('button');
+        btnTodos.className = 'filtro-btn filtro-ativo';
+        btnTodos.textContent = 'Todos';
+        btnTodos.addEventListener('click', () => {
+            document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('filtro-ativo'));
+            btnTodos.classList.add('filtro-ativo');
+            document.querySelectorAll('.categoria-section').forEach(s => s.style.display = '');
+        });
+        filtrosDiv.appendChild(btnTodos);
+
+        for (const cat of categorias) {
+            const btn = document.createElement('button');
+            btn.className = 'filtro-btn';
+            btn.textContent = cat;
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('filtro-ativo'));
+                btn.classList.add('filtro-ativo');
+                document.querySelectorAll('.categoria-section').forEach(s => {
+                    s.style.display = s.dataset.categoria === cat ? '' : 'none';
+                });
+            });
+            filtrosDiv.appendChild(btn);
+        }
+
+        container.appendChild(filtrosDiv);
+
+        // Seções por categoria
+        for (const [cat, videosDoGrupo] of Object.entries(grupos)) {
+            const secao = document.createElement('div');
+            secao.className = 'categoria-section';
+            secao.dataset.categoria = cat;
+
+            const titulo = document.createElement('h3');
+            titulo.className = 'categoria-titulo';
+            titulo.textContent = cat;
+            secao.appendChild(titulo);
+
+            const grid = document.createElement('div');
+            grid.className = 'cards';
+            grid.setAttribute('role', 'list');
+
+            for (const video of videosDoGrupo) {
+                const card = document.createElement("article");
+                card.className = "card";
+                card.setAttribute("role", "listitem");
+
+                const linkParaVideo = `../telaPagVideo/telaPagVideo.html?id=${video.id}`;
+
+                card.innerHTML = `
+                <a href="${linkParaVideo}" class="card-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                    <img src="${video.imagem_capa || ''}" alt="Thumbnail do vídeo ${video.titulo || 'Sem título'}" onerror="this.onerror=null; this.src='';" ${!video.imagem_capa ? 'style="display:none"' : ''}>
+                    <div class="body">
+                        <h3>${video.titulo || 'Título Indisponível'}</h3>
+                        <span class="meta">com <strong>TecnoSenior</strong> · ★★★★★</span>
+                        <div class="teacher">
+                            <img class="avatar" src="ImgLogo/Play.png" alt="Ícone Play" />
+                            <span class="pill">Acessar o vídeo</span>
+                        </div>
+                    </div>
+                </a>
+                `;
+
+                grid.appendChild(card);
+            }
+
+            secao.appendChild(grid);
+            container.appendChild(secao);
+        }
+
     } catch (err) {
         console.error("Erro ao carregar vídeos:", err);
         container.innerHTML = `<p style="color: red;">Erro ao carregar vídeos: ${err.message}. Tente recarregar a página.</p>`;

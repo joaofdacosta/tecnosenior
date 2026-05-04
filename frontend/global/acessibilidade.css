@@ -166,6 +166,23 @@ body.alto-contraste.destaque-leitura .lede:hover {
   border: 2px solid #24483e;
 }
 
+body.alto-contraste .filtro-btn {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .filtro-btn:hover,
+body.alto-contraste .filtro-btn.filtro-ativo {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.alto-contraste .categoria-titulo {
+  color: #ffffff !important;
+  border-left-color: #ffff00 !important;
+}
+
 body.alto-contraste .barra-acessibilidade button.destaque-ativo {
   background-color: #ffff00 !important;
   color: #000000 !important;
