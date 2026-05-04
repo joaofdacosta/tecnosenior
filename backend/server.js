@@ -375,5 +375,26 @@ app.post("/videos/:id/comentarios", async (req, res) => {
   }
 });
 
-const PORT = 3001; 
+// ----------------------------------------------------
+// ROTAS DE CONTATO / CENTRAL DE AJUDA
+// ----------------------------------------------------
+
+app.post("/contato", async (req, res) => {
+  try {
+    const { nome, email, tipo, mensagem } = req.body;
+    if (!nome || !email || !tipo || !mensagem) {
+      return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
+    }
+    await pool.query(
+      "INSERT INTO mensagens_contato (nome, email, tipo, mensagem) VALUES ($1, $2, $3, $4)",
+      [nome.trim(), email.trim(), tipo, mensagem.trim()]
+    );
+    res.status(201).json({ mensagem: "Mensagem enviada com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao salvar contato:", err.message);
+    res.status(500).json({ erro: "Erro ao enviar mensagem." });
+  }
+});
+
+const PORT = 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));

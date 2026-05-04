@@ -65,6 +65,19 @@ CREATE TABLE IF NOT EXISTS comentarios (
 );
 
 -- ==============================
+-- TABELA MENSAGENS DE CONTATO
+-- ==============================
+CREATE TABLE IF NOT EXISTS mensagens_contato (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    tipo VARCHAR(100) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lida BOOLEAN DEFAULT FALSE
+);
+
+-- ==============================
 -- INSERÇÃO INICIAL DOS VÍDEOS
 -- ==============================
 INSERT INTO videos (id, titulo, descricao, categoria, url_do_video_local, imagem_capa)
