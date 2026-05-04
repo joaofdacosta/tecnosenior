@@ -188,3 +188,15 @@ body.alto-contraste .barra-acessibilidade button.destaque-ativo {
   color: #000000 !important;
   border: 2px solid #ffffff !important;
 }
+
+.barra-acessibilidade button.voz-ativo {
+  background-color: #d4edda;
+  color: #24483e;
+  border: 2px solid #24483e;
+}
+
+body.alto-contraste .barra-acessibilidade button.voz-ativo {
+  background-color: #00ff88 !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}

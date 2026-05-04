@@ -38,6 +38,51 @@ function alternarDestaqueLeitura() {
   }
 }
 
+let _vozAltaHandler = null;
+
+function alternarVozAlta() {
+  const body = document.body;
+  body.classList.toggle("voz-alta");
+  const isAtivo = body.classList.contains("voz-alta");
+  localStorage.setItem("vozAlta", isAtivo);
+
+  const btn = document.getElementById("btn-voz-alta");
+  if (btn) {
+    btn.classList.toggle("voz-ativo", isAtivo);
+    btn.setAttribute("aria-pressed", isAtivo);
+  }
+
+  if (isAtivo) {
+    _ativarVozAlta();
+  } else {
+    _desativarVozAlta();
+  }
+}
+
+function _ativarVozAlta() {
+  const seletores = "p, h1, h2, h3, h4, li, label, span.view-text, .meta, .lede, .categoria-titulo";
+  _vozAltaHandler = (e) => {
+    const el = e.target.closest(seletores);
+    if (!el) return;
+    const texto = el.innerText?.trim();
+    if (!texto) return;
+    window.speechSynthesis.cancel();
+    const fala = new SpeechSynthesisUtterance(texto);
+    fala.lang = "pt-BR";
+    fala.rate = 0.9;
+    window.speechSynthesis.speak(fala);
+  };
+  document.addEventListener("mouseover", _vozAltaHandler);
+}
+
+function _desativarVozAlta() {
+  window.speechSynthesis.cancel();
+  if (_vozAltaHandler) {
+    document.removeEventListener("mouseover", _vozAltaHandler);
+    _vozAltaHandler = null;
+  }
+}
+
 function carregarPreferencias() {
   const tamanhoSalvo = localStorage.getItem("tamanhoFonte");
   if (tamanhoSalvo) {
@@ -62,6 +107,17 @@ function carregarPreferencias() {
       btn.classList.add("destaque-ativo");
       btn.setAttribute("aria-pressed", "true");
     }
+  }
+
+  const vozAltaSalvo = localStorage.getItem("vozAlta");
+  if (vozAltaSalvo === "true") {
+    document.body.classList.add("voz-alta");
+    const btn = document.getElementById("btn-voz-alta");
+    if (btn) {
+      btn.classList.add("voz-ativo");
+      btn.setAttribute("aria-pressed", "true");
+    }
+    _ativarVozAlta();
   }
 }
 
