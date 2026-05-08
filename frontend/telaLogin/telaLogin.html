@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="../global/acessibilidade.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - TecnoSenior</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../telaInicial/ImgLogo/favicon.png"
+    />
+    <link rel="stylesheet" href="estiloTelaLogin.css" />
+  </head>
+
+  <body>
+    <div class="barra-acessibilidade">
+      <button
+        onclick="alterarFonte('aumentar')"
+        aria-label="Aumentar tamanho da letra"
+      >
+        A+
+      </button>
+      <button
+        onclick="alterarFonte('diminuir')"
+        aria-label="Diminuir tamanho da letra"
+      >
+        A-
+      </button>
+      <button onclick="alternarContraste()" aria-label="Ativar alto contraste">
+        🌗 Alto Contraste
+      </button>
+      <button
+        id="btn-destaque-leitura"
+        onclick="alternarDestaqueLeitura()"
+        aria-label="Ativar destaque de leitura"
+        aria-pressed="false"
+      >
+        🔆 Destaque de Leitura
+      </button>
+      <button
+        id="btn-voz-alta"
+        onclick="alternarVozAlta()"
+        aria-label="Ativar leitura em voz alta"
+        aria-pressed="false"
+      >
+        🔊 Voz Alta
+      </button>
+    </div>
+
+    <div class="login-container">
+      <h2>Entrar</h2>
+
+      <form id="login-form">
+        <div class="input-group">
+          <label
+            for="email"
+            style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Email:</label
+          >
+          <input
+            type="email"
+            id="email"
+            placeholder="exemplo@email.com"
+            required
+          />
+        </div>
+
+        <div class="input-group" style="margin-top: 15px">
+          <label
+            for="senha"
+            style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Senha:</label
+          >
+          <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            required
+          />
+        </div>
+
+        <p
+          id="error-message"
+          style="
+            color: red;
+            font-weight: bold;
+            font-size: 0.9em;
+            min-height: 1.2em;
+            margin-top: 10px;
+          "
+        ></p>
+
+        <button type="submit" class="login-btn" style="margin-top: 10px">
+          Entrar
+        </button>
+      </form>
+
+      <div
+        class="links"
+        style="
+          margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        "
+      >
+        <a href="../telaEsqueciMinhaSenha/telaEsqueciMinhaSenha.html"
+          >Esqueceu a senha?</a
+        >
+        <a href="../telaCadastroUsuario/telaCadastroUsuario.html"
+          >Criar uma nova conta</a
+        >
+      </div>
+    </div>
+
+    <script src="login.js" defer></script>
+    <script src="../global/acessibilidade.js"></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="../global/acessibilidade.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TecnoSenior</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="estiloTelaInicial.css" />
+    <link rel="stylesheet" href="../global/notificacoes.css" />
+  </head>
+
+  <body>
+    <div class="barra-acessibilidade">
+      <button
+        onclick="alterarFonte('aumentar')"
+        aria-label="Aumentar tamanho da letra"
+      >
+        A+
+      </button>
+      <button
+        onclick="alterarFonte('diminuir')"
+        aria-label="Diminuir tamanho da letra"
+      >
+        A-
+      </button>
+      <button onclick="alternarContraste()" aria-label="Ativar alto contraste">
+        🌗 Alto Contraste
+      </button>
+      <button
+        id="btn-destaque-leitura"
+        onclick="alternarDestaqueLeitura()"
+        aria-label="Ativar destaque de leitura"
+        aria-pressed="false"
+      >
+        🔆 Destaque de Leitura
+      </button>
+      <button
+        id="btn-voz-alta"
+        onclick="alternarVozAlta()"
+        aria-label="Ativar leitura em voz alta"
+        aria-pressed="false"
+      >
+        🔊 Voz Alta
+      </button>
+    </div>
+
+    <header>
+      <div class="container navbar" role="navigation" aria-label="principal">
+        <a class="brand" href="#" aria-label="Página inicial TecnoSenior">
+          <img
+            src="ImgLogo/ImgLogo.png"
+            alt="Logo TecnoSenior"
+            class="logo-ico"
+          />
+          <div class="wordmark">
+            <span class="wm-title">TECNOSENIOR</span>
+            <span class="wm-sub">Ensinando o básico para a melhor idade</span>
+          </div>
+        </a>
+
+        <nav class="nav-actions">
+          <a class="btn btn-primary" href="../TelaLogin/telaLogin.html"
+            >Login</a
+          >
+          <a class="btn btn-primary" href="#login">Perfil</a>
+          <a class="btn btn-primary" href="#motivo-title">Sobre Nós</a>
+          <a class="btn btn-primary" href="../telaAjuda/telaAjuda.html">Ajuda</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="container section hero" aria-labelledby="hero-title">
+        <div class="hero-left" aria-hidden="true">
+          <img
+            src="ImgIdososTablet.png"
+            alt="Grupo de idosos sorrindo enquanto pintam e usam tablet."
+          />
+        </div>
+        <div class="hero-right">
+          <div class="eyebrow">Aprenda o básico de verdade</div>
+          <h1 id="hero-title">
+            Fique conectado com cursos simples e divertidos
+          </h1>
+          <p class="lead">
+            Tecnologia, bem‑estar e hobbies, com aulas ao vivo e gravadas.
+            Interface acessível, letras grandes e suporte humano.
+          </p>
+          <div class="nav-actions" style="margin-top: 8px">
+            <a class="btn btn-primary" href="#cursos">Ver cursos</a>
+            <a class="btn btn-ghost" href="#motivo-title">Saiba mais</a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="cursos"
+        class="container section"
+        aria-labelledby="cursos-title"
+      >
+        <h2 id="cursos-title">Cursos populares</h2>
+
+        <div class="cards" role="list"></div>
+      </section>
+
+      <section
+        class="container section grid-why"
+        aria-labelledby="motivo-title"
+      >
+        <div>
+          <h2 id="motivo-title">Sobre nós</h2>
+          <div class="motivos">
+            <div class="motivo">
+              <svg
+                class="motivo-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 12h18" />
+                <path d="M6 9v6" />
+                <path d="M18 9v6" />
+              </svg>
+              <div>
+                <strong>TecnoSenior</strong><br /><span class="meta"
+                  >Na TecnoSenior, acreditamos que nunca é tarde para explorar o
+                  mundo digital. Nosso projeto nasceu com um propósito simples e
+                  poderoso: tornar a internet um lugar mais acessível, acolhedor
+                  e divertido para as pessoas idosas.</span
+                >
+              </div>
+            </div>
+            <div class="motivo">
+              <svg
+                class="motivo-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 20l9-5-9-5-9 5 9 5z" />
+                <path d="M12 12l9-5-9-5-9 5 9 5z" />
+              </svg>
+              <div>
+                <strong>Desafio</strong><br /><span class="meta"
+                  >Sabemos que a tecnologia pode parecer um desafio, por isso
+                  criamos um ambiente pensado com carinho: com navegação
+                  simples, letras maiores, linguagem clara e suporte amigável,
+                  para que cada pessoa possa se sentir segura e confiante ao
+                  usar nossos sites..</span
+                >
+              </div>
+            </div>
+            <div class="motivo">
+              <svg
+                class="motivo-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="14" rx="2" />
+                <path d="M7 20h10" />
+              </svg>
+              <div>
+                <strong>Equipe</strong><br /><span class="meta"
+                  >Nosso time é formado por profissionais apaixonados por
+                  tecnologia, educação e cuidado com o ser humano. Trabalhamos
+                  todos os dias para construir uma internet mais inclusiva, onde
+                  todos possam aprender, compartilhar e se divertir —
+                  independentemente da idade.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>Depoimentos</h2>
+          <div class="testimonials" role="list">
+            <div class="testi" role="listitem">
+              <img class="avatar" src="ImgAvatares/1.png" alt="Foto de Lúcia" />
+              <div>
+                <div class="name">Lúcia S.</div>
+                <div class="role">Curitiba</div>
+                <div>“Consegui falar com meus netos por video!”</div>
+              </div>
+            </div>
+            <div class="testi" role="listitem">
+              <img class="avatar" src="ImgAvatares/2.png" alt="Foto de Bento" />
+              <div>
+                <div class="name">Bento F.</div>
+                <div class="role">São Paulo</div>
+                <div>“Vídeos diretos e claros.”</div>
+              </div>
+            </div>
+            <div class="testi" role="listitem">
+              <img class="avatar" src="ImgAvatares/3.png" alt="Foto de Neide" />
+              <div>
+                <div class="name">Neide M.</div>
+                <div class="role">Recife</div>
+                <div>“Fácil de usar, tudo muito claro.”</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../global/notificacoes.js"></script>
+    <script src="script.js"></script>
+    <script src="../global/acessibilidade.js"></script>
+  </body>
+</html>

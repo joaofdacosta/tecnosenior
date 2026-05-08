@@ -1,0 +1,108 @@
+.ts-notif-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 16px;
+}
+
+.ts-notif-modal {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.ts-notif-icone {
+    font-size: 52px;
+    margin-bottom: 12px;
+}
+
+.ts-notif-h2 {
+    font-size: 1.4rem;
+    color: #24483e;
+    margin: 0 0 12px 0;
+}
+
+.ts-notif-p {
+    color: #444444;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+}
+
+.ts-notif-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ts-btn-primary {
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #24483e;
+    color: #ffffff;
+    border: 2px solid #24483e;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ts-btn-primary:hover {
+    background-color: #1a3530;
+    border-color: #1a3530;
+}
+
+.ts-btn-ghost {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    background-color: transparent;
+    color: #666666;
+    border: 2px solid #cccccc;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ts-btn-ghost:hover {
+    border-color: #24483e;
+    color: #24483e;
+}
+
+/* Alto contraste */
+body.alto-contraste .ts-notif-overlay {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+body.alto-contraste .ts-notif-modal {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff;
+}
+
+body.alto-contraste .ts-notif-h2,
+body.alto-contraste .ts-notif-p {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .ts-btn-primary {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+}
+
+body.alto-contraste .ts-btn-ghost {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+body.alto-contraste .ts-btn-ghost:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}

@@ -1,0 +1,202 @@
+:root {
+  --tamanho-fonte: 16px;
+}
+
+html, body {
+  font-size: var(--tamanho-fonte) !important;
+}
+
+.barra-acessibilidade {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 20px;
+  background-color: #24483e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+.barra-acessibilidade button {
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background-color: #ffffff;
+  color: #24483e;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.barra-acessibilidade button:hover {
+  background-color: #e8f5f1;
+  transform: scale(1.05);
+}
+
+body.alto-contraste,
+body.alto-contraste main,
+body.alto-contraste header,
+body.alto-contraste section,
+body.alto-contraste .login-container,
+body.alto-contraste .motivo,
+body.alto-contraste .testi,
+body.alto-contraste .navbar,
+body.alto-contraste .player-card,
+body.alto-contraste .comments-section,
+body.alto-contraste .comment-item,
+body.alto-contraste .sidebar,
+body.alto-contraste .profile-card,
+body.alto-contraste .side-card,
+body.alto-contraste .lessons a,
+body.alto-contraste .lessons .is-current a,
+body.alto-contraste .card,
+body.alto-contraste .card .body,
+body.alto-contraste .panel,
+body.alto-contraste .profile-body ul li,
+body.alto-contraste .footer,
+body.alto-contraste .ts-header,
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+body.alto-contraste * {
+  color: #ffffff !important;
+}
+
+body.alto-contraste .motivo,
+body.alto-contraste .testi,
+body.alto-contraste .login-container,
+body.alto-contraste .profile-card,
+body.alto-contraste .side-card,
+body.alto-contraste .lessons a,
+body.alto-contraste .card,
+body.alto-contraste .panel,
+body.alto-contraste .profile-body ul li,
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
+  border: 1px solid #ffffff !important;
+}
+
+body.alto-contraste .btn,
+body.alto-contraste .login-btn,
+body.alto-contraste .btn-action,
+body.alto-contraste .btn-send {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+  font-weight: bold !important;
+}
+
+body.alto-contraste .btn:hover,
+body.alto-contraste .login-btn:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+body.alto-contraste .barra-acessibilidade {
+  background-color: #000000 !important;
+  border-bottom: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .barra-acessibilidade button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .barra-acessibilidade button:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.destaque-leitura p,
+body.destaque-leitura li,
+body.destaque-leitura h1,
+body.destaque-leitura h2,
+body.destaque-leitura h3,
+body.destaque-leitura label,
+body.destaque-leitura span.view-text,
+body.destaque-leitura .meta,
+body.destaque-leitura .lede {
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  transition: background-color 0.15s ease;
+}
+
+body.destaque-leitura p:hover,
+body.destaque-leitura li:hover,
+body.destaque-leitura h1:hover,
+body.destaque-leitura h2:hover,
+body.destaque-leitura h3:hover,
+body.destaque-leitura label:hover,
+body.destaque-leitura span.view-text:hover,
+body.destaque-leitura .meta:hover,
+body.destaque-leitura .lede:hover {
+  background-color: #fff9c4;
+  cursor: default;
+}
+
+body.alto-contraste.destaque-leitura p:hover,
+body.alto-contraste.destaque-leitura li:hover,
+body.alto-contraste.destaque-leitura h1:hover,
+body.alto-contraste.destaque-leitura h2:hover,
+body.alto-contraste.destaque-leitura h3:hover,
+body.alto-contraste.destaque-leitura label:hover,
+body.alto-contraste.destaque-leitura span.view-text:hover,
+body.alto-contraste.destaque-leitura .meta:hover,
+body.alto-contraste.destaque-leitura .lede:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+.barra-acessibilidade button.destaque-ativo {
+  background-color: #fff9c4;
+  color: #24483e;
+  border: 2px solid #24483e;
+}
+
+body.alto-contraste .filtro-btn {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .filtro-btn:hover,
+body.alto-contraste .filtro-btn.filtro-ativo {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.alto-contraste .categoria-titulo {
+  color: #ffffff !important;
+  border-left-color: #ffff00 !important;
+}
+
+body.alto-contraste .barra-acessibilidade button.destaque-ativo {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.barra-acessibilidade button.voz-ativo {
+  background-color: #d4edda;
+  color: #24483e;
+  border: 2px solid #24483e;
+}
+
+body.alto-contraste .barra-acessibilidade button.voz-ativo {
+  background-color: #00ff88 !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
