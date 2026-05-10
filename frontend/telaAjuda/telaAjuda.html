@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="../global/acessibilidade.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Central de Ajuda - TecnoSenior</title>
+    <link rel="icon" type="image/png" href="../telaInicial/ImgLogo/favicon.png" />
+    <link rel="stylesheet" href="estiloTelaAjuda.css" />
+  </head>
+
+  <body>
+    <div class="barra-acessibilidade">
+      <button onclick="alterarFonte('aumentar')" aria-label="Aumentar tamanho da letra">A+</button>
+      <button onclick="alterarFonte('diminuir')" aria-label="Diminuir tamanho da letra">A-</button>
+      <button onclick="alternarContraste()" aria-label="Ativar alto contraste">🌗 Alto Contraste</button>
+      <button
+        id="btn-destaque-leitura"
+        onclick="alternarDestaqueLeitura()"
+        aria-label="Ativar destaque de leitura"
+        aria-pressed="false"
+      >🔆 Destaque de Leitura</button>
+      <button
+        id="btn-voz-alta"
+        onclick="alternarVozAlta()"
+        aria-label="Ativar leitura em voz alta"
+        aria-pressed="false"
+      >🔊 Voz Alta</button>
+    </div>
+
+    <header>
+      <div class="container navbar" role="navigation">
+        <a class="brand" href="../telaInicial/telaInicial.html" aria-label="Página inicial TecnoSenior">
+          <img src="../telaInicial/ImgLogo/ImgLogo.png" alt="Logo TecnoSenior" class="logo-ico" />
+          <div class="wordmark">
+            <span class="wm-title">TECNOSENIOR</span>
+            <span class="wm-sub">Ensinando o básico para a melhor idade</span>
+          </div>
+        </a>
+        <nav class="nav-actions">
+          <a class="btn btn-ghost" href="../telaPerfil/telaPerfil.html">Perfil</a>
+          <a class="btn btn-ghost" href="../telaInicial/telaInicial.html">Início</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">Central de Ajuda</h1>
+      <p class="page-subtitle">
+        Encontre respostas para as dúvidas mais comuns ou envie uma mensagem para a nossa equipe.
+      </p>
+
+      <!-- SEÇÃO FAQ -->
+      <section class="faq-section" aria-labelledby="faq-titulo">
+        <h2 id="faq-titulo">Perguntas Frequentes</h2>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-1">
+            Como me cadastro no TecnoSenior?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-1" class="faq-resposta" role="region">
+            Clique em "Criar uma nova conta" na tela de Login. Preencha seu nome, e-mail e uma senha. Depois clique em "Cadastrar" — pronto, sua conta estará criada!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-2">
+            Esqueci minha senha. O que devo fazer?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-2" class="faq-resposta" role="region">
+            Na tela de Login, clique em "Esqueceu a senha?". Digite seu e-mail e nome de usuário. Um código de segurança será gerado — informe esse código junto com sua nova senha para redefinir o acesso.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-3">
+            Como assistir às aulas?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-3" class="faq-resposta" role="region">
+            Após fazer login, você verá os cursos na página inicial. Clique no cartão da aula que deseja assistir e o vídeo abrirá automaticamente. Use os botões "Aula Anterior" e "Próxima Aula" para navegar entre as aulas.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-4">
+            Os cursos são gratuitos?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-4" class="faq-resposta" role="region">
+            Sim! Todos os conteúdos do TecnoSenior são totalmente gratuitos. Basta criar uma conta e você terá acesso a todas as aulas disponíveis.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-5">
+            Como curtir ou favoritar uma aula?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-5" class="faq-resposta" role="region">
+            Dentro da página de uma aula, você encontrará os botões "👍 Curtir" e "❤️ Favoritar" logo abaixo do vídeo. Clique neles para registrar sua aprovação ou guardar a aula para acessar depois.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-6">
+            Como atualizo meus dados de perfil?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-6" class="faq-resposta" role="region">
+            Clique em "Perfil" no menu superior. Na tela do perfil, clique no ícone de lápis (✏️) para entrar no modo de edição. Altere os dados desejados e clique em "Salvar Alterações".
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-7">
+            O vídeo não está carregando. O que fazer?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-7" class="faq-resposta" role="region">
+            Verifique sua conexão com a internet. Tente recarregar a página (pressione F5 no teclado). Se o problema persistir, use o formulário abaixo para nos relatar o problema e nossa equipe irá verificar.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-8">
+            Como as letras podem ficar maiores?
+            <span class="faq-icone" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-8" class="faq-resposta" role="region">
+            Na barra no topo da página, clique no botão "A+" para aumentar o tamanho das letras, ou "A-" para diminuir. Também é possível ativar o Alto Contraste para uma visualização mais nítida.
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO DE CONTATO -->
+      <section class="contato-section" aria-labelledby="contato-titulo">
+        <h2 id="contato-titulo">Fale Conosco</h2>
+        <p>
+          Não encontrou o que precisava? Envie uma mensagem para nossa equipe — respondemos em até 2 dias úteis.
+        </p>
+
+        <form id="form-contato" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contato-nome">Seu nome:</label>
+              <input
+                type="text"
+                id="contato-nome"
+                placeholder="Como quer ser chamado?"
+                required
+                maxlength="150"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contato-email">Seu e-mail:</label>
+              <input
+                type="email"
+                id="contato-email"
+                placeholder="exemplo@email.com"
+                required
+                maxlength="255"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contato-tipo">Tipo de solicitação:</label>
+            <select id="contato-tipo" required>
+              <option value="">Selecione...</option>
+              <option value="Relatar problema">Relatar um problema</option>
+              <option value="Solicitar atualização de conteúdo">Solicitar atualização de conteúdo</option>
+              <option value="Tirar dúvida">Tirar uma dúvida sobre as aulas</option>
+              <option value="Sugestão">Fazer uma sugestão</option>
+              <option value="Outro">Outro assunto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contato-mensagem">Sua mensagem:</label>
+            <textarea
+              id="contato-mensagem"
+              rows="5"
+              placeholder="Descreva sua dúvida, problema ou sugestão com o máximo de detalhes possível..."
+              required
+              maxlength="2000"
+            ></textarea>
+          </div>
+
+          <p id="mensagem-status"></p>
+
+          <button type="submit" class="btn-enviar" id="btn-enviar">
+            Enviar Mensagem
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <script src="ajuda.js" defer></script>
+    <script src="../global/acessibilidade.js"></script>
+  </body>
+</html>

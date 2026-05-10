@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="../global/acessibilidade.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Perfil - TecnoSenior</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../telaInicial/ImgLogo/favicon.png"
+    />
+    <link rel="stylesheet" href="estiloTelaPerfil.css" />
+
+    <style>
+      /* Estilos exclusivos para a funcionalidade de Ver/Editar */
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .btn-edit-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.2s;
+      }
+      .btn-edit-toggle:hover {
+        transform: scale(1.1);
+      }
+      .icon-pencil {
+        width: 24px;
+        height: 24px;
+        fill: #24483e;
+      }
+
+      .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+      .input-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+        font-size: 0.9em;
+      }
+
+      .view-text {
+        font-size: 1.1em;
+        color: #333;
+        display: block;
+        min-height: 20px;
+      }
+      .edit-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #24483e;
+        border-radius: 5px;
+        display: none;
+        box-sizing: border-box;
+      }
+
+      .btn-save {
+        background-color: #24483e;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+        display: none;
+      }
+      .btn-save:hover {
+        background-color: #1b362f;
+      }
+
+      .row {
+        display: flex;
+        gap: 20px;
+      }
+      .row .input-group {
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="barra-acessibilidade">
+      <button
+        onclick="alterarFonte('aumentar')"
+        aria-label="Aumentar tamanho da letra"
+      >
+        A+
+      </button>
+      <button
+        onclick="alterarFonte('diminuir')"
+        aria-label="Diminuir tamanho da letra"
+      >
+        A-
+      </button>
+      <button onclick="alternarContraste()" aria-label="Ativar alto contraste">
+        🌗 Alto Contraste
+      </button>
+      <button
+        id="btn-destaque-leitura"
+        onclick="alternarDestaqueLeitura()"
+        aria-label="Ativar destaque de leitura"
+        aria-pressed="false"
+      >
+        🔆 Destaque de Leitura
+      </button>
+      <button
+        id="btn-voz-alta"
+        onclick="alternarVozAlta()"
+        aria-label="Ativar leitura em voz alta"
+        aria-pressed="false"
+      >
+        🔊 Voz Alta
+      </button>
+    </div>
+
+    <header>
+      <div class="container navbar" role="navigation">
+        <a class="brand" href="../telaInicial/telaInicial.html">
+          <img
+            src="../telaInicial/ImgLogo/ImgLogo.png"
+            alt="Logo TecnoSenior"
+            class="logo-ico"
+          />
+          <div class="wordmark">
+            <span class="wm-title">TECNOSENIOR</span>
+            <span class="wm-sub">Ensinando o básico para a melhor idade</span>
+          </div>
+        </a>
+        <nav class="nav-actions">
+          <a class="btn btn-ghost" href="../telaAjuda/telaAjuda.html">Ajuda</a>
+          <button
+            id="logout-button"
+            class="btn btn-ghost"
+            style="cursor: pointer"
+          >
+            Sair
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="profile-container">
+      <div class="profile-card">
+        <div class="profile-header">
+          <img src="imgAvatar/Avatares.png" alt="Avatar" class="profile-pic" />
+          <h1 id="header-nome">Carregando...</h1>
+        </div>
+
+        <div class="profile-body">
+          <div class="header-row">
+            <h3>Meus Dados</h3>
+            <button
+              id="btn-toggle-edit"
+              class="btn-edit-toggle"
+              title="Editar Informações"
+            >
+              <svg class="icon-pencil" viewBox="0 0 24 24">
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <form id="form-perfil">
+            <div class="input-group">
+              <label for="input-username">Nome Completo:</label>
+              <span id="view-username" class="view-text">...</span>
+              <input type="text" id="input-username" class="edit-input" />
+            </div>
+
+            <div class="input-group">
+              <label for="input-email">Email:</label>
+              <span id="view-email" class="view-text">...</span>
+              <input type="email" id="input-email" class="edit-input" />
+            </div>
+
+            <div class="row">
+              <div class="input-group">
+                <label for="input-cpf">CPF:</label>
+                <span id="view-cpf" class="view-text">-</span>
+                <input
+                  type="text"
+                  id="input-cpf"
+                  class="edit-input"
+                  placeholder="000.000.000-00"
+                />
+              </div>
+              <div class="input-group">
+                <label for="input-nascimento">Data de Nascimento:</label>
+                <span id="view-nascimento" class="view-text">-</span>
+                <input type="date" id="input-nascimento" class="edit-input" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="input-genero">Gênero:</label>
+              <span id="view-genero" class="view-text">-</span>
+              <select id="input-genero" class="edit-input">
+                <option value="">Selecione...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+
+            <div id="container-senha" class="input-group" style="display: none">
+              <label for="input-senha">Nova Senha (Opcional):</label>
+              <input
+                type="password"
+                id="input-senha"
+                class="edit-input"
+                placeholder="Digite para alterar"
+              />
+            </div>
+
+            <p
+              id="mensagem-status"
+              style="margin-top: 10px; font-weight: bold; min-height: 1.2em"
+            ></p>
+
+            <button type="submit" id="btn-salvar" class="btn-save">
+              Salvar Alterações
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="perfil.js" defer></script>
+    <script src="../global/acessibilidade.js"></script>
+  </body>
+</html>
