@@ -21,6 +21,12 @@ document.querySelectorAll(".faq-pergunta").forEach((btn) => {
 
 // ---- PRÉ-PREENCHER COM DADOS DO USUÁRIO LOGADO ----
 const usuario = JSON.parse(localStorage.getItem("usuarioLogado") || "null");
+
+// Exibe link admin apenas para o usuário administrador (id === 1)
+if (usuario && usuario.id === 1) {
+  const linkAdmin = document.getElementById("link-admin");
+  if (linkAdmin) linkAdmin.style.display = "";
+}
 if (usuario) {
   const nomeInput = document.getElementById("contato-nome");
   const emailInput = document.getElementById("contato-email");

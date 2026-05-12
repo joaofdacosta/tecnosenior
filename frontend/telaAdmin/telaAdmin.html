@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Admin — TecnoSenior</title>
+    <link rel="icon" type="image/png" href="../telaInicial/ImgLogo/favicon.png" />
+    <link rel="stylesheet" href="estiloTelaAdmin.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container navbar">
+        <a class="brand" href="../telaInicial/telaInicial.html">
+          <img src="../telaInicial/ImgLogo/ImgLogo.png" alt="Logo TecnoSenior" class="logo-ico" />
+          <div class="wordmark">
+            <span class="wm-title">TECNOSENIOR</span>
+            <span class="wm-sub">Painel Administrativo</span>
+          </div>
+        </a>
+        <nav class="nav-actions">
+          <a class="btn btn-ghost" href="../telaInicial/telaInicial.html">Voltar ao Site</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="page-title">Mensagens Recebidas</h1>
+
+      <!-- RESUMO -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <span class="stat-num" id="total-count">—</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat-card nao-lida">
+          <span class="stat-num" id="nao-lidas-count">—</span>
+          <span class="stat-label">Não lidas</span>
+        </div>
+        <div class="stat-card lida">
+          <span class="stat-num" id="lidas-count">—</span>
+          <span class="stat-label">Lidas</span>
+        </div>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="filtros">
+        <select id="filtro-tipo">
+          <option value="">Todos os tipos</option>
+          <option value="Relatar problema">Relatar problema</option>
+          <option value="Solicitar atualização de conteúdo">Solicitar atualização de conteúdo</option>
+          <option value="Tirar dúvida">Tirar dúvida</option>
+          <option value="Sugestão">Sugestão</option>
+          <option value="Outro">Outro</option>
+        </select>
+
+        <select id="filtro-lida">
+          <option value="">Todas</option>
+          <option value="false">Não lidas</option>
+          <option value="true">Lidas</option>
+        </select>
+
+        <button class="btn-filtrar" onclick="carregarMensagens()">Filtrar</button>
+      </div>
+
+      <!-- LISTA -->
+      <div id="lista-mensagens">
+        <p class="carregando">Carregando mensagens...</p>
+      </div>
+    </main>
+
+    <!-- MODAL DE DETALHES -->
+    <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <div class="modal">
+        <button class="modal-fechar" onclick="fecharModal()" aria-label="Fechar">&times;</button>
+        <p class="modal-tipo" id="modal-tipo"></p>
+        <h2 id="modal-titulo" class="modal-nome"></h2>
+        <p class="modal-email" id="modal-email"></p>
+        <p class="modal-data" id="modal-data"></p>
+        <hr />
+        <p class="modal-mensagem" id="modal-mensagem"></p>
+        <div class="modal-acoes">
+          <button id="btn-toggle-lida" class="btn-lida" onclick="toggleLida()"></button>
+          <button class="btn-excluir" onclick="excluirMensagem()">Excluir</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

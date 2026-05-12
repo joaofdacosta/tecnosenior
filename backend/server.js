@@ -9,6 +9,7 @@ import crypto from 'crypto';
 import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import nodemailer from 'nodemailer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,6 +18,17 @@ const { Pool } = pg;
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// --- CONFIGURAÇÃO DE E-MAIL ---
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 // --- SERVIR O FRONTEND ---
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
@@ -385,14 +397,93 @@ app.post("/contato", async (req, res) => {
     if (!nome || !email || !tipo || !mensagem) {
       return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
     }
+
     await pool.query(
       "INSERT INTO mensagens_contato (nome, email, tipo, mensagem) VALUES ($1, $2, $3, $4)",
       [nome.trim(), email.trim(), tipo, mensagem.trim()]
     );
+
+    // Envia e-mail de notificação em segundo plano (não bloqueia a resposta)
+    transporter.sendMail({
+      from: `"TecnoSenior" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_DESTINO,
+      subject: `[TecnoSenior] ${tipo} — ${nome.trim()}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #ddd;border-radius:8px">
+          <h2 style="color:#24483e;margin-top:0">Nova mensagem recebida</h2>
+          <table style="width:100%;border-collapse:collapse;margin-bottom:16px">
+            <tr><td style="padding:6px 0;color:#555;width:120px"><strong>Nome:</strong></td><td>${nome.trim()}</td></tr>
+            <tr><td style="padding:6px 0;color:#555"><strong>E-mail:</strong></td><td><a href="mailto:${email.trim()}">${email.trim()}</a></td></tr>
+            <tr><td style="padding:6px 0;color:#555"><strong>Tipo:</strong></td><td>${tipo}</td></tr>
+          </table>
+          <div style="background:#f4f6f8;border-radius:6px;padding:16px;white-space:pre-wrap;font-size:15px;color:#333">${mensagem.trim()}</div>
+          <p style="margin-top:16px;font-size:12px;color:#999">Acesse o <a href="http://localhost:3001/telaAdmin/telaAdmin.html">painel administrativo</a> para visualizar todas as mensagens.</p>
+        </div>
+      `,
+    }).catch((err) => console.error("Erro ao enviar e-mail:", err.message));
+
     res.status(201).json({ mensagem: "Mensagem enviada com sucesso!" });
   } catch (err) {
     console.error("Erro ao salvar contato:", err.message);
     res.status(500).json({ erro: "Erro ao enviar mensagem." });
+  }
+});
+
+// ----------------------------------------------------
+// ROTAS DO PAINEL ADMIN
+// ----------------------------------------------------
+
+app.get("/admin/mensagens", async (req, res) => {
+  try {
+    const { tipo, lida } = req.query;
+    let query = "SELECT * FROM mensagens_contato";
+    const params = [];
+    const conditions = [];
+
+    if (tipo) {
+      params.push(tipo);
+      conditions.push(`tipo = $${params.length}`);
+    }
+    if (lida !== undefined) {
+      params.push(lida === "true");
+      conditions.push(`lida = $${params.length}`);
+    }
+    if (conditions.length > 0) query += " WHERE " + conditions.join(" AND ");
+    query += " ORDER BY data_envio DESC";
+
+    const result = await pool.query(query, params);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Erro ao listar mensagens:", err.message);
+    res.status(500).json({ erro: "Erro ao buscar mensagens." });
+  }
+});
+
+app.patch("/admin/mensagens/:id/lida", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { lida } = req.body;
+    const result = await pool.query(
+      "UPDATE mensagens_contato SET lida = $1 WHERE id = $2 RETURNING *",
+      [lida, id]
+    );
+    if (result.rowCount === 0) return res.status(404).json({ erro: "Mensagem não encontrada." });
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Erro ao atualizar mensagem:", err.message);
+    res.status(500).json({ erro: "Erro ao atualizar mensagem." });
+  }
+});
+
+app.delete("/admin/mensagens/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("DELETE FROM mensagens_contato WHERE id = $1", [id]);
+    if (result.rowCount === 0) return res.status(404).json({ erro: "Mensagem não encontrada." });
+    res.json({ mensagem: "Mensagem excluída com sucesso." });
+  } catch (err) {
+    console.error("Erro ao excluir mensagem:", err.message);
+    res.status(500).json({ erro: "Erro ao excluir mensagem." });
   }
 });
 
