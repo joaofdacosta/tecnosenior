@@ -79,6 +79,18 @@
         <p class="modal-data" id="modal-data"></p>
         <hr />
         <p class="modal-mensagem" id="modal-mensagem"></p>
+        <div id="resposta-enviada" class="resposta-enviada hidden">
+          <p class="resposta-label">Resposta enviada em <span id="modal-data-resposta"></span>:</p>
+          <p class="resposta-texto" id="modal-resposta-texto"></p>
+        </div>
+
+        <div id="secao-responder" class="secao-responder">
+          <label for="campo-resposta">Escreva sua resposta:</label>
+          <textarea id="campo-resposta" rows="4" placeholder="Digite a resposta para o usuário..."></textarea>
+          <p id="resposta-status"></p>
+          <button class="btn-enviar-resposta" id="btn-enviar-resposta" onclick="enviarResposta()">Enviar Resposta</button>
+        </div>
+
         <div class="modal-acoes">
           <button id="btn-toggle-lida" class="btn-lida" onclick="toggleLida()"></button>
           <button class="btn-excluir" onclick="excluirMensagem()">Excluir</button>

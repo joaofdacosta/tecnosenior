@@ -74,8 +74,16 @@ CREATE TABLE IF NOT EXISTS mensagens_contato (
     tipo VARCHAR(100) NOT NULL,
     mensagem TEXT NOT NULL,
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    lida BOOLEAN DEFAULT FALSE
+    lida BOOLEAN DEFAULT FALSE,
+    respondida BOOLEAN DEFAULT FALSE,
+    resposta TEXT,
+    data_resposta TIMESTAMP
 );
+
+-- Migração para bancos já existentes
+ALTER TABLE mensagens_contato ADD COLUMN IF NOT EXISTS respondida BOOLEAN DEFAULT FALSE;
+ALTER TABLE mensagens_contato ADD COLUMN IF NOT EXISTS resposta TEXT;
+ALTER TABLE mensagens_contato ADD COLUMN IF NOT EXISTS data_resposta TIMESTAMP;
 
 -- ==============================
 -- INSERÇÃO INICIAL DOS VÍDEOS

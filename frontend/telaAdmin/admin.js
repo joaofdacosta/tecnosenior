@@ -35,6 +35,7 @@ async function carregarMensagens() {
           <div class="msg-cabecalho">
             <span class="msg-nome">${escapeHtml(m.nome)}</span>
             <span class="msg-badge">${escapeHtml(m.tipo)}</span>
+            ${m.respondida ? '<span class="msg-badge" style="background:#d4edda;color:#1a7a3c">✔ Respondida</span>' : ""}
             <span class="msg-data">${formatarData(m.data_envio)}</span>
           </div>
           <p class="msg-preview">${escapeHtml(m.mensagem)}</p>
@@ -56,13 +57,7 @@ function atualizarStats(mensagens) {
 
 async function abrirModal(id) {
   try {
-    const tipo = document.getElementById("filtro-tipo").value;
-    const lida = document.getElementById("filtro-lida").value;
-    const params = new URLSearchParams();
-    if (tipo) params.append("tipo", tipo);
-    if (lida !== "") params.append("lida", lida);
-
-    const res = await fetch(`${API}/admin/mensagens?${params}`);
+    const res = await fetch(`${API}/admin/mensagens`);
     const mensagens = await res.json();
     const m = mensagens.find((x) => x.id === id);
     if (!m) return;
@@ -75,6 +70,22 @@ async function abrirModal(id) {
     document.getElementById("modal-data").textContent = "🕐 " + formatarData(m.data_envio);
     document.getElementById("modal-mensagem").textContent = m.mensagem;
     atualizarBotaoLida(m.lida);
+
+    // Exibe resposta anterior ou seção de responder
+    const respostaEnviada = document.getElementById("resposta-enviada");
+    const secaoResponder = document.getElementById("secao-responder");
+    document.getElementById("campo-resposta").value = "";
+    document.getElementById("resposta-status").textContent = "";
+
+    if (m.respondida && m.resposta) {
+      respostaEnviada.classList.remove("hidden");
+      document.getElementById("modal-data-resposta").textContent = formatarData(m.data_resposta);
+      document.getElementById("modal-resposta-texto").textContent = m.resposta;
+      secaoResponder.style.display = "none";
+    } else {
+      respostaEnviada.classList.add("hidden");
+      secaoResponder.style.display = "";
+    }
 
     document.getElementById("modal-overlay").classList.remove("hidden");
 
@@ -121,6 +132,58 @@ async function toggleLida() {
     carregarMensagens();
   } catch {
     alert("Erro ao atualizar status da mensagem.");
+  }
+}
+
+async function enviarResposta() {
+  if (!mensagemAtual) return;
+  const resposta = document.getElementById("campo-resposta").value.trim();
+  const statusEl = document.getElementById("resposta-status");
+  const btn = document.getElementById("btn-enviar-resposta");
+
+  if (!resposta) {
+    statusEl.style.color = "red";
+    statusEl.textContent = "Escreva uma resposta antes de enviar.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+  statusEl.textContent = "";
+
+  try {
+    const res = await fetch(`${API}/admin/mensagens/${mensagemAtual.id}/responder`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ resposta }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      statusEl.style.color = "#1a7a3c";
+      statusEl.textContent = "✅ Resposta enviada com sucesso!";
+      mensagemAtual.respondida = true;
+      mensagemAtual.resposta = resposta;
+      mensagemAtual.data_resposta = new Date().toISOString();
+
+      setTimeout(() => {
+        document.getElementById("resposta-enviada").classList.remove("hidden");
+        document.getElementById("modal-data-resposta").textContent = formatarData(mensagemAtual.data_resposta);
+        document.getElementById("modal-resposta-texto").textContent = resposta;
+        document.getElementById("secao-responder").style.display = "none";
+        carregarMensagens();
+      }, 1000);
+    } else {
+      statusEl.style.color = "red";
+      statusEl.textContent = data.erro || "Erro ao enviar resposta.";
+      btn.disabled = false;
+      btn.textContent = "Enviar Resposta";
+    }
+  } catch {
+    statusEl.style.color = "red";
+    statusEl.textContent = "Não foi possível conectar ao servidor.";
+    btn.disabled = false;
+    btn.textContent = "Enviar Resposta";
   }
 }
 

@@ -487,5 +487,47 @@ app.delete("/admin/mensagens/:id", async (req, res) => {
   }
 });
 
+app.post("/admin/mensagens/:id/responder", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { resposta } = req.body;
+    if (!resposta || !resposta.trim()) {
+      return res.status(400).json({ erro: "A resposta não pode estar vazia." });
+    }
+
+    const resultado = await pool.query("SELECT * FROM mensagens_contato WHERE id = $1", [id]);
+    if (resultado.rowCount === 0) return res.status(404).json({ erro: "Mensagem não encontrada." });
+
+    const msg = resultado.rows[0];
+
+    await transporter.sendMail({
+      from: `"TecnoSenior" <${process.env.EMAIL_USER}>`,
+      to: msg.email,
+      subject: `Re: [TecnoSenior] ${msg.tipo}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #ddd;border-radius:8px">
+          <h2 style="color:#24483e;margin-top:0">Resposta da equipe TecnoSenior</h2>
+          <p style="font-size:15px;color:#333">Olá, <strong>${msg.nome}</strong>!</p>
+          <div style="background:#f4f6f8;border-radius:6px;padding:16px;font-size:15px;color:#333;white-space:pre-wrap;margin:16px 0">${resposta.trim()}</div>
+          <p style="font-size:13px;color:#555">Atenciosamente,<br><strong>Equipe TecnoSenior</strong></p>
+          <hr style="border:none;border-top:1px solid #eee;margin:20px 0"/>
+          <p style="font-size:12px;color:#999">Em resposta à sua mensagem:</p>
+          <blockquote style="border-left:3px solid #ccc;padding-left:12px;color:#777;font-size:13px;white-space:pre-wrap">${msg.mensagem}</blockquote>
+        </div>
+      `,
+    });
+
+    await pool.query(
+      "UPDATE mensagens_contato SET respondida = TRUE, lida = TRUE, resposta = $1, data_resposta = NOW() WHERE id = $2",
+      [resposta.trim(), id]
+    );
+
+    res.json({ mensagem: "Resposta enviada com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao responder mensagem:", err.message);
+    res.status(500).json({ erro: "Erro ao enviar resposta." });
+  }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));
