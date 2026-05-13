@@ -119,12 +119,16 @@
             style="display: block; font-weight: bold; margin-bottom: 5px"
             >Nova Senha:</label
           >
-          <input
-            type="password"
-            id="reset-senha"
-            placeholder="Digite a nova senha"
-            required
-          />
+          <div style="position:relative;">
+            <input
+              type="password"
+              id="reset-senha"
+              placeholder="Digite a nova senha"
+              required
+              style="padding-right:2.8rem;width:100%;"
+            />
+            <button type="button" onclick="toggleSenha('reset-senha',this)" aria-label="Mostrar senha" style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.2rem;color:#888;">👁</button>
+          </div>
         </div>
 
         <div class="input-group" style="margin-top: 15px">
@@ -133,12 +137,16 @@
             style="display: block; font-weight: bold; margin-bottom: 5px"
             >Confirme sua senha:</label
           >
-          <input
-            type="password"
-            id="reset-confirmar-senha"
-            placeholder="Repita a nova senha"
-            required
-          />
+          <div style="position:relative;">
+            <input
+              type="password"
+              id="reset-confirmar-senha"
+              placeholder="Repita a nova senha"
+              required
+              style="padding-right:2.8rem;width:100%;"
+            />
+            <button type="button" onclick="toggleSenha('reset-confirmar-senha',this)" aria-label="Mostrar senha" style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.2rem;color:#888;">👁</button>
+          </div>
         </div>
 
         <p

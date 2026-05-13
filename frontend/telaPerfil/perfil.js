@@ -186,3 +186,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 });
+function toggleSenha(id, btn) {
+  const input = document.getElementById(id);
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+    btn.setAttribute('aria-label', 'Ocultar senha');
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁';
+    btn.setAttribute('aria-label', 'Mostrar senha');
+  }
+}

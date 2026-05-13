@@ -219,12 +219,16 @@
 
             <div id="container-senha" class="input-group" style="display: none">
               <label for="input-senha">Nova Senha (Opcional):</label>
-              <input
-                type="password"
-                id="input-senha"
-                class="edit-input"
-                placeholder="Digite para alterar"
-              />
+              <div style="position:relative;">
+                <input
+                  type="password"
+                  id="input-senha"
+                  class="edit-input"
+                  placeholder="Digite para alterar"
+                  style="padding-right:2.8rem;width:100%;"
+                />
+                <button type="button" onclick="toggleSenha('input-senha',this)" aria-label="Mostrar senha" style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.2rem;color:#888;">👁</button>
+              </div>
             </div>
 
             <p
