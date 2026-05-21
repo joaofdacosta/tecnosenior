@@ -57,26 +57,53 @@ function _enviarNotificacao(titulo, corpo) {
     new Notification(titulo, { body: corpo });
 }
 
+function _mostrarToastBemVindo(titulo, corpo) {
+    const toast = document.createElement('div');
+    toast.className = 'ts-toast';
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'polite');
+
+    toast.innerHTML = `
+        <div class="ts-toast-icone" aria-hidden="true">👋</div>
+        <div class="ts-toast-conteudo">
+            <div class="ts-toast-titulo">${titulo}</div>
+            <div class="ts-toast-corpo">${corpo}</div>
+        </div>
+        <button class="ts-toast-fechar" aria-label="Fechar notificação">✕</button>
+    `;
+
+    document.body.appendChild(toast);
+
+    const fechar = () => {
+        toast.classList.add('ts-toast-saindo');
+        toast.addEventListener('animationend', () => toast.remove(), { once: true });
+    };
+
+    toast.querySelector('.ts-toast-fechar').addEventListener('click', fechar);
+    setTimeout(fechar, 5000);
+}
+
 function _processarRecemLogado() {
     if (!sessionStorage.getItem(_CHAVE_RECEM_LOGADO)) return;
     sessionStorage.removeItem(_CHAVE_RECEM_LOGADO);
 
     const usuarioStr = localStorage.getItem('usuarioLogado');
-    if (!usuarioStr) return;
+    let titulo, corpo;
 
     try {
         const usuario = JSON.parse(usuarioStr);
-        const primeiroNome = usuario.username ? usuario.username.split(' ')[0] : 'amigo(a)';
-        _enviarNotificacao(
-            `Bem-vindo(a) de volta, ${primeiroNome}!`,
-            'Que bom ter você aqui! Confira os vídeos disponíveis no TecnoSenior.'
-        );
+        const primeiroNome = usuario && usuario.username ? usuario.username.split(' ')[0] : 'amigo(a)';
+        titulo = `Bem-vindo(a) de volta, ${primeiroNome}!`;
+        corpo = 'Que bom ter você aqui! Confira os vídeos disponíveis no TecnoSenior.';
     } catch (e) {
-        _enviarNotificacao(
-            'Bem-vindo(a) de volta!',
-            'Que bom ter você aqui! Confira os vídeos disponíveis no TecnoSenior.'
-        );
+        titulo = 'Bem-vindo(a) de volta!';
+        corpo = 'Que bom ter você aqui! Confira os vídeos disponíveis no TecnoSenior.';
     }
+
+    // Toast visual dentro da página — funciona sempre, sem precisar de permissão
+    _mostrarToastBemVindo(titulo, corpo);
+    // Notificação do SO como bônus, se o usuário tiver permitido
+    _enviarNotificacao(titulo, corpo);
 }
 
 async function _verificarNovosVideos() {
@@ -118,12 +145,14 @@ async function _verificarNovosVideos() {
 }
 
 function inicializarNotificacoes() {
+    // Toast de boas-vindas sempre exibe na interface, sem depender de permissão do SO
+    _processarRecemLogado();
+
     if (!('Notification' in window)) return;
 
     const permissao = localStorage.getItem(_CHAVE_PERMISSAO);
 
     if (permissao === 'aceito' && Notification.permission === 'granted') {
-        _processarRecemLogado();
         _verificarNovosVideos();
     } else if (permissao === null) {
         setTimeout(_criarPopupPermissao, 1500);
