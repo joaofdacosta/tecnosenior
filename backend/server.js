@@ -50,6 +50,10 @@ const pool = process.env.DATABASE_URL
       port: process.env.DB_PORT,
     });
 
+pool.on('error', (err) => {
+  console.error('⚠️  Erro inesperado no pool do Postgres:', err.message);
+});
+
 pool.connect()
   .then(() => console.log("✅ Conectado ao PostgreSQL com sucesso!"))
   .catch((err) => console.error("❌ Erro ao conectar ao PostgreSQL:", err.message));
@@ -551,6 +555,13 @@ app.post("/admin/mensagens/:id/responder", async (req, res) => {
     console.error("Erro ao responder mensagem:", err.message);
     res.status(500).json({ erro: "Erro ao enviar resposta." });
   }
+});
+
+app.use((req, res) => {
+  if (req.headers.accept && req.headers.accept.includes('application/json')) {
+    return res.status(404).json({ erro: 'Rota não encontrada' });
+  }
+  res.status(404).redirect('/telaInicial/telaInicial.html');
 });
 
 const PORT = process.env.PORT || 3001;
