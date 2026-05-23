@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Chama a Rota 1 (porta 3001)
-      const response = await fetch("http://localhost:3001/forgot-password", {
+      const response = await fetch(`${window.API_BASE_URL}/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, username }),
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         requestMessage.style.color = "green";
         requestMessage.textContent = "Código gerado!";
-        alert("Verifique o terminal do servidor para ver o seu código de redefinição.");
+        alert("Se os dados estiverem corretos, você receberá um e-mail com o código em breve.");
 
         // Esconde o formulário 1 e mostra o formulário 2
         formRequest.style.display = "none";
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Chama a Rota 2 (porta 3001)
-      const response = await fetch("http://localhost:3001/reset-password", {
+      const response = await fetch(`${window.API_BASE_URL}/reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, senha }),

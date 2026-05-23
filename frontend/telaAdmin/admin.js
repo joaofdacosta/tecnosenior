@@ -1,4 +1,4 @@
-const API = "http://localhost:3001";
+const API = window.API_BASE_URL;
 
 let mensagemAtual = null;
 

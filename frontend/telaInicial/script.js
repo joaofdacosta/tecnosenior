@@ -3,7 +3,7 @@
 // ===========================================
 
 // Define a URL base da sua API (onde o server.js está rodando)
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = window.API_BASE_URL;
 
 /**
  * Esta função é chamada assim que o HTML termina de carregar.

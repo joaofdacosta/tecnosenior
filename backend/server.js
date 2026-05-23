@@ -16,7 +16,10 @@ const __dirname = path.dirname(__filename);
 
 const { Pool } = pg;
 const app = express();
-app.use(cors());
+app.use(cors(process.env.FRONTEND_URL ? {
+  origin: [process.env.FRONTEND_URL, 'http://localhost:3001', 'http://127.0.0.1:5500'],
+  credentials: true,
+} : {}));
 app.use(express.json());
 
 // --- CONFIGURAÇÃO DE E-MAIL ---
@@ -37,13 +40,15 @@ app.get('/', (req, res) => {
 });
 
 // --- CONEXÃO COM O POSTGRES ---
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
+const pool = process.env.DATABASE_URL
+  ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
+  : new Pool({
+      user: process.env.DB_USER,
+      host: process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT,
+    });
 
 pool.connect()
   .then(() => console.log("✅ Conectado ao PostgreSQL com sucesso!"))
@@ -102,15 +107,34 @@ app.post("/forgot-password", async (req, res) => {
     if (!email || !username) return res.status(400).json({ erro: "Dados incompletos." });
 
     const userQuery = await pool.query("SELECT * FROM usuarios WHERE email = $1 AND username = $2", [email, username]);
-    if (userQuery.rows.length === 0) return res.status(404).json({ erro: "Usuário não encontrado." });
+    if (userQuery.rows.length === 0) return res.status(200).json({ mensagem: "Se os dados estiverem corretos, você receberá um e-mail em breve." });
 
-    const token = crypto.randomBytes(4).toString('hex').toUpperCase(); 
-    const expires = new Date(Date.now() + 600000); 
+    const token = crypto.randomBytes(4).toString('hex').toUpperCase();
+    const expires = new Date(Date.now() + 600000);
 
     await pool.query("UPDATE usuarios SET reset_token = $1, reset_token_expires = $2 WHERE email = $3", [token, expires, email]);
-    console.log(`[RESET TOKEN]: ${token}`); 
-    res.status(200).json({ mensagem: "Token gerado no console." });
+
+    await transporter.sendMail({
+      from: `"TecnoSenior" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: 'Código de redefinição de senha — TecnoSenior',
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px;border:1px solid #ddd;border-radius:12px">
+          <h2 style="color:#24483e;font-size:1.6rem;margin-top:0">Redefinição de senha</h2>
+          <p style="font-size:1.1rem;color:#333">Olá, <strong>${userQuery.rows[0].username}</strong>!</p>
+          <p style="font-size:1.1rem;color:#333">Use o código abaixo para redefinir sua senha. Ele é válido por <strong>10 minutos</strong>.</p>
+          <div style="background:#f4f6f8;border-radius:8px;padding:24px;text-align:center;margin:24px 0">
+            <span style="font-size:2.5rem;font-weight:bold;letter-spacing:8px;color:#24483e">${token}</span>
+          </div>
+          <p style="font-size:1rem;color:#555">Se você não solicitou a troca de senha, pode ignorar este e-mail.</p>
+          <p style="font-size:0.9rem;color:#999;margin-top:24px">Equipe TecnoSenior</p>
+        </div>
+      `,
+    });
+
+    res.status(200).json({ mensagem: "Se os dados estiverem corretos, você receberá um e-mail em breve." });
   } catch (err) {
+    console.error("Erro no forgot-password:", err.message);
     res.status(500).json({ erro: "Erro interno." });
   }
 });
@@ -417,7 +441,7 @@ app.post("/contato", async (req, res) => {
             <tr><td style="padding:6px 0;color:#555"><strong>Tipo:</strong></td><td>${tipo}</td></tr>
           </table>
           <div style="background:#f4f6f8;border-radius:6px;padding:16px;white-space:pre-wrap;font-size:15px;color:#333">${mensagem.trim()}</div>
-          <p style="margin-top:16px;font-size:12px;color:#999">Acesse o <a href="http://localhost:3001/telaAdmin/telaAdmin.html">painel administrativo</a> para visualizar todas as mensagens.</p>
+          <p style="margin-top:16px;font-size:12px;color:#999">Acesse o <a href="${process.env.FRONTEND_URL || 'http://localhost:3001'}/telaAdmin/telaAdmin.html">painel administrativo</a> para visualizar todas as mensagens.</p>
         </div>
       `,
     }).catch((err) => console.error("Erro ao enviar e-mail:", err.message));
@@ -529,5 +553,5 @@ app.post("/admin/mensagens/:id/responder", async (req, res) => {
   }
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));

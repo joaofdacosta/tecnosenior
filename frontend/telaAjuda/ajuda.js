@@ -58,7 +58,7 @@ form.addEventListener("submit", async (e) => {
   statusEl.textContent = "";
 
   try {
-    const res = await fetch("http://localhost:3001/contato", {
+    const res = await fetch(`${window.API_BASE_URL}/contato`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome, email, tipo, mensagem }),

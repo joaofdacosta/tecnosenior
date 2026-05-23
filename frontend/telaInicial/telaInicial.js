@@ -3,7 +3,7 @@
 // ===========================================
 
 // Constante para a porta do seu Backend
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = window.API_BASE_URL;
 
 // -------------------------------------------
 // 1. LÓGICA DE LOGIN/LOGOUT (Controle do Cabeçalho APENAS por JS)

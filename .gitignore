@@ -1,5 +1,9 @@
 node_modules/
 backend/.env
+backend/.env.*
+!backend/.env.example
 .env
+.env.*
+!.env.example
 tecnosenior-main/
 .claude/

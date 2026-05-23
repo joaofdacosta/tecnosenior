@@ -2,7 +2,7 @@
 // ARQUIVO: tela-video.js
 // ===========================================
 
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = window.API_BASE_URL;
 
 document.addEventListener("DOMContentLoaded", async () => {
     

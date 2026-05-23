@@ -110,7 +110,7 @@ async function _verificarNovosVideos() {
     if (!('Notification' in window) || Notification.permission !== 'granted') return;
 
     try {
-        const response = await fetch('http://localhost:3001/videos');
+        const response = await fetch(`${window.API_BASE_URL}/videos`);
         if (!response.ok) return;
 
         const videos = await response.json();

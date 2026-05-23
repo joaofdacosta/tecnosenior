@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const senha = senhaInput.value;
 
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${window.API_BASE_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, senha }),
