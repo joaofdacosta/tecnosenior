@@ -166,6 +166,22 @@ body.alto-contraste.destaque-leitura .lede:hover {
   border: 2px solid #24483e;
 }
 
+body.alto-contraste .sidebar-item {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+}
+
+body.alto-contraste .sidebar-item:hover {
+  background-color: #333333 !important;
+}
+
+body.alto-contraste .sidebar-item.active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
 body.alto-contraste .filtro-btn {
   background-color: #000000 !important;
   color: #ffffff !important;
