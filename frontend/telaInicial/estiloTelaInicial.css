@@ -247,8 +247,120 @@ h1 {
 }
 
 .testi blockquote{
-  margin: 6px 0 0;          
+  margin: 6px 0 0;
   font-style: normal;
-  color: var(--text);        
+  color: var(--text);
+}
+
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
+
+/* Tablet (≤ 768px) */
+@media (max-width: 768px) {
+  /* Barra de acessibilidade */
+  .barra-acessibilidade {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+  .barra-acessibilidade button {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+
+  /* Header */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+  .brand img {
+    height: 50px;
+  }
+  .nav-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  /* Hero: coluna única, imagem acima do texto */
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-left img {
+    width: 60%;
+    margin: 0 auto 16px;
+  }
+  .hero-right {
+    padding: 16px 20px;
+  }
+
+  /* Cards: 2 colunas */
+  .cards,
+  .categoria-section .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Sobre nós + Depoimentos: coluna única */
+  .grid-why {
+    grid-template-columns: 1fr;
+  }
+
+  /* Section padding */
+  .section {
+    padding-block: 24px;
+    padding-inline: 16px;
+  }
+}
+
+/* Celular (≤ 480px) */
+@media (max-width: 480px) {
+  /* Barra de acessibilidade */
+  .barra-acessibilidade {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .barra-acessibilidade button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  /* Header: esconde subtítulo da logo */
+  .wm-sub {
+    display: none;
+  }
+  .brand img {
+    height: 40px;
+  }
+
+  /* Hero: esconde imagem para economizar espaço */
+  .hero-left {
+    display: none;
+  }
+  .hero-right {
+    padding: 20px 16px;
+  }
+  h1 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+  .lead {
+    font-size: 16px;
+  }
+
+  /* Cards: 1 coluna */
+  .cards,
+  .categoria-section .cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Filtros de categoria */
+  .filtro-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
 
