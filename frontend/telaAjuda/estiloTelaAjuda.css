@@ -279,8 +279,13 @@ main {
     flex-direction: column;
     gap: 0;
   }
-
   .contato-section {
     padding: 24px 16px;
   }
+}
+
+@media (max-width: 480px) {
+  .logo-ico { height: 36px; }
+  .wm-sub { display: none; }
+  main { padding: 20px 16px; }
 }

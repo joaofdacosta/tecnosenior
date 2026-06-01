@@ -234,3 +234,26 @@ body.alto-contraste .barra-acessibilidade button.voz-ativo {
   color: #000000 !important;
   border: 2px solid #ffffff !important;
 }
+
+@media (max-width: 768px) {
+  .barra-acessibilidade {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+  .barra-acessibilidade button {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barra-acessibilidade {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .barra-acessibilidade button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}

@@ -267,3 +267,10 @@ header {
   .stat-card { min-width: 80px; padding: 0.6rem 0.9rem; }
   .msg-data { display: none; }
 }
+
+@media (max-width: 480px) {
+  header { padding: 0.5rem 1rem; }
+  .navbar { flex-wrap: wrap; gap: 0.5rem; }
+  .container { padding: 0.75rem; }
+  .stat-card { min-width: unset; width: 100%; }
+}

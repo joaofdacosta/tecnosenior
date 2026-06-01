@@ -75,7 +75,13 @@ body {
 #error-message {
   color: red;
   font-size: 0.9em;
-  min-height: 1.2em; /* Evita que o layout "pule" */
+  min-height: 1.2em;
   margin-top: 10px;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .cadastro-container {
+    padding: 24px 20px;
+  }
 }

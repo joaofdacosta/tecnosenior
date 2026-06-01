@@ -184,3 +184,11 @@ video{
 
 /* Acessibilidade foco */
 :focus-visible{ outline:3px solid #bee9de; outline-offset: 2px; }
+
+@media (max-width: 600px) {
+  .brand img { height: 44px; }
+  .wm-sub { display: none; }
+  .navbar { gap: 8px; flex-wrap: wrap; }
+  .watch { padding: 16px 0 32px; }
+  .side-card { position: static; }
+}

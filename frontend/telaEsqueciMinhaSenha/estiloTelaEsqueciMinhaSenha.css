@@ -73,8 +73,15 @@ body {
 
 /* Estilo dos links */
 .links a {
-    color: #007bff;                           /* azul padrão */
+    color: #007bff;
     text-decoration: none;
     font-size: 14px;
     margin: 0 10px;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 92%;
+    padding: 24px 20px;
+  }
 }
