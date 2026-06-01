@@ -142,7 +142,7 @@ h1 {
 /* Cursos */
     .section{padding-block:36px}
     .section h2{font-size:26px;margin:0 50 18px}
-    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
     .card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:100%}
     .card .body{padding:14px}
     .card h3{font-size:18px;margin:6px 0 6px}
@@ -201,7 +201,7 @@ h1 {
 
 .categoria-section .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 
