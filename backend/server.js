@@ -58,6 +58,10 @@ pool.connect()
   .then(() => console.log("✅ Conectado ao PostgreSQL com sucesso!"))
   .catch((err) => console.error("❌ Erro ao conectar ao PostgreSQL:", err.message));
 
+transporter.verify()
+  .then(() => console.log("✅ Servidor de e-mail (SMTP) pronto para envio."))
+  .catch((err) => console.error("❌ Falha na configuração SMTP — e-mails não serão enviados:", err.message));
+
 // ----------------------------------------------------
 // ROTAS DE AUTENTICAÇÃO
 // ----------------------------------------------------
@@ -138,8 +142,8 @@ app.post("/forgot-password", async (req, res) => {
 
     res.status(200).json({ mensagem: "Se os dados estiverem corretos, você receberá um e-mail em breve." });
   } catch (err) {
-    console.error("Erro no forgot-password:", err.message);
-    res.status(500).json({ erro: "Erro interno." });
+    console.error("Erro no forgot-password:", err.message, err.stack);
+    res.status(500).json({ erro: "Erro interno ao enviar o e-mail. Verifique os logs do servidor." });
   }
 });
 
