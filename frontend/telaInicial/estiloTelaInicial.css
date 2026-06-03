@@ -142,7 +142,7 @@ h1 {
 /* Cursos */
     .section{padding-block:36px}
     .section h2{font-size:26px;margin:0 50 18px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
     .card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:100%}
     .card .body{padding:14px}
     .card h3{font-size:18px;margin:6px 0 6px}
@@ -150,10 +150,10 @@ h1 {
     .teacher{display:flex;align-items:center;gap:8px;margin-top:10px}
     .avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid var(--stroke)}
     .pill{margin-top:auto;display:inline-flex;align-self:flex-start;padding:10px 14px;border-radius:999px;background:var(--text);color:#fff;font-weight:600}
-.card > img {
-  height: 180px;       
-  width: 100%;         
-  object-fit: cover;  
+.card img:not(.avatar) {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
 }
 
 /* Tópicos por tema */
@@ -201,7 +201,7 @@ h1 {
 
 .categoria-section .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
 }
 
